@@ -247,22 +247,22 @@
 </div>
 
 <h3>Następny krok: separacja stemów przez Demucs</h3>
-<p><strong>Demucs</strong> (Meta AI Research) to model głębokiego uczenia do source separation — rozłożenia miksu na osobne stemy: perkusja, bas, wokal, reszta. Zamiast reagować na spektrum całego miksu, każde źródło dźwięku może sterować innym elementem oświetlenia niezależnie.</p>
+<p><strong>Demucs</strong> (Meta AI Research) to model deep learning do source separation — rozłożenia miksu na osobne stemy: perkusja, bas, wokal, reszta. Zamiast reagować na spektrum całego miksu, każde źródło dźwięku może sterować innym elementem oświetlenia niezależnie.</p>
 
 <div class="arch" style="margin-top:16px">
-  <div class="arch-row">
-    <div class="abox blue">Miks audio<small>stereo/mono</small></div>
-    <span class="aarrow">→</span>
-    <div class="abox purple">Demucs<small>stem separation</small></div>
-    <span class="aarrow">→</span>
-    <div class="abox green">drums stem<small>→ strobes</small></div>
-  </div>
-  <div class="arch-row" style="margin-top:6px;padding-left:168px">
-    <div class="abox blue">bass stem<small>→ sunbeams</small></div>
-    <span class="aarrow" style="opacity:0">→</span>
-    <div class="abox orange">vocals stem<small>→ accent lights</small></div>
-    <span class="aarrow" style="opacity:0">→</span>
-    <div class="abox gray">other stem<small>→ ambient</small></div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+      <div class="abox blue" style="min-width:120px">Miks audio<small>stereo/mono</small></div>
+    </div>
+    <span class="aarrow" style="font-size:20px">→</span>
+    <div class="abox purple" style="min-width:120px">Demucs<small>stem separation</small></div>
+    <span class="aarrow" style="font-size:20px">→</span>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="abox green" style="min-width:160px">drums stem<small>→ strobes</small></div>
+      <div class="abox blue"  style="min-width:160px">bass stem<small>→ sunbeams</small></div>
+      <div class="abox orange" style="min-width:160px">vocals stem<small>→ accent lights</small></div>
+      <div class="abox gray"  style="min-width:160px">other stem<small>→ ambient</small></div>
+    </div>
   </div>
 </div>
 
