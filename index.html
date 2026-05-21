@@ -201,10 +201,10 @@
   </div>
 
   <div class="nav-cat">Kontekst</div>
-  <a href="#ai-workflow">Workflow z AI</a>
   <a href="#art-context">Inspiracja i geneza</a>
   <a href="#overview">Przegląd systemu</a>
   <a href="#concepts">Koncepcje techniczne</a>
+  <a href="#ai-workflow">Workflow z AI</a>
 
   <div class="nav-cat">LightSim</div>
   <a href="#ls-about">O projekcie</a>
@@ -258,61 +258,6 @@
   </div>
 </div>
 
-<!-- AI WORKFLOW -->
-<section id="ai-workflow">
-<h2>Workflow z AI</h2>
-
-<p>Ta dokumentacja i projekty które opisuje są zoptymalizowane pod współpracę z AI - świadomie i celowo, nie jako skrót. Poniżej wyjaśnienie co to oznacza w praktyce i dlaczego tak robię.</p>
-
-<h3>Dlaczego pracuję z AI</h3>
-<p>W branży IT praca z AI stała się w ciągu ostatnich dwóch lat standardem - większość programistów używa go codziennie do pisania kodu. Różnica jest w tym <em>jak</em>. "Vibe coding" - czyli generowanie kodu bez rozumienia co się dostaje - działa do pewnego momentu, po czym projekt staje się niemożliwy do utrzymania. Tutaj jest inaczej: decyzje architektoniczne, podział na moduły, interfejsy między nimi - to wszystko jest przemyślane przeze mnie zanim AI napisze pierwszą linię. AI implementuje uzgodnione kontrakty, nie podejmuje decyzji projektowych.</p>
-
-<p>Efekt praktyczny: zamiast spędzać wieczór na parsowaniu pakietów Art-Net czy pisaniu boilerplate SwiftUI, spędzam go na decydowaniu jak mapować energię basu na kąt rozsyłu reflektora - i na faktycznym eksperymentowaniu z tym na scenie.</p>
-
-<div class="ai-workflow-grid">
-  <div class="ai-wcard">
-    <h4>Czego AI w tych projektach nie robi</h4>
-    <p>AI nie podejmuje decyzji architektonicznych, nie wybiera mapowań dźwięk-światło, nie ustala co ma artystyczny sens. To zostaje po mojej stronie - i właśnie dlatego jest tu czas na AI do reszty.</p>
-  </div>
-  <div class="ai-wcard">
-    <h4>Czego AI w tych projektach robi</h4>
-    <p>Implementuje uzgodnione interfejsy, generuje boilerplate, tłumaczy między formatami danych, pisze dokumentację na podstawie kodu, debuguje z kontekstem całego projektu w głowie.</p>
-  </div>
-</div>
-
-<h3>Jak projekty są zaprojektowane pod AI</h3>
-<p>Współpraca z AI jest tym sprawniejsza im lepsza struktura projektu. Stąd świadome decyzje w kodzie:</p>
-
-<ul>
-  <li><strong>Separacja modułów z wyraźnymi granicami</strong> - AI może pracować nad jednym pakietem bez kontekstu pozostałych, bo interfejsy są jawne</li>
-  <li><strong>Kontrakt typów między modułami</strong> - cross-module dependencies przez Float/Double, nie przez referencje do obiektów. AI nie musi "domyślać się" jak moduły do siebie pasują</li>
-  <li><strong>Konsekwentne nazewnictwo</strong> - <code>bassStrobeThreshold</code>, <code>accentDecay</code>, <code>sunbeamFlashDuration</code> - nazwy które mówią co to jest, bez komentarzy</li>
-  <li><strong>CLAUDE.md w każdym repozytorium</strong> - plik zawierający kontekst architektoniczny, stack, kluczowe zasady i link do tej dokumentacji. Nowa sesja AI zaczyna od przeczytania tego pliku</li>
-</ul>
-
-<h3>Dokumentacja jako żywy system</h3>
-<p>Ta strona jest zaprojektowana tak, żeby AI mogło ją łatwo czytać i aktualizować maszynowo. Nie zastępuje kodu, ale daje kontekst który w kodzie nie ma miejsca: decyzje, motywacje, powiązania między projektami.</p>
-
-<p>Każde repozytorium ma zainstalowany <strong>post-commit hook</strong>, który po każdym commicie automatycznie aktualizuje sekcję "Ostatnie zmiany" i mini-historię commitów przy każdym projekcie:</p>
-
-<div class="hook-flow">
-  <div class="hstep"><code>git commit</code><small>w LightSim / bass_panel / midi-ledfx</small></div>
-  <span class="harrow">→</span>
-  <div class="hstep"><code>.git/hooks/post-commit</code><small>uruchamia update-docs.sh</small></div>
-  <span class="harrow">→</span>
-  <div class="hstep">aktualizuje<small>HTML w audio-lighting-docs</small></div>
-  <span class="harrow">→</span>
-  <div class="hstep"><code>git push</code><small>do GitHub Pages</small></div>
-  <span class="harrow">→</span>
-  <div class="hstep" style="color:var(--green)">ta strona<small>jest aktualna</small></div>
-</div>
-
-<div class="box tip">
-  <i>📌</i>
-  <div>Dokumentacja jest generowana przy pomocy AI i aktualizowana automatycznie - ale decyzje architektoniczne, kontekst artystyczny i "dlaczego" w tej dokumentacji pochodzą ode mnie. AI jest od "jak", nie od "po co".</div>
-</div>
-
-</section>
 
 <!-- ══════════════════════ KONTEKST ARTYSTYCZNY ══════════════════════ -->
 <section id="art-context">
@@ -439,6 +384,64 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 
 <h3>DMX i Art-Net</h3>
 <p>DMX-512 to protokół sterowania oświetleniem scenicznym - 512 kanałów, każdy 0–255. Art-Net enkapsuluje DMX w pakiety UDP (port 6454), umożliwiając sterowanie przez sieć Ethernet. LightSim implementuje Art-Net sender; LedFX używa własnego sterownika do fizycznych LED.</p>
+</section>
+
+<hr>
+
+<!-- AI WORKFLOW -->
+<section id="ai-workflow">
+<h2>Workflow z AI</h2>
+
+<p>Ta dokumentacja i projekty które opisuje są zoptymalizowane pod współpracę z AI - świadomie i celowo, nie jako skrót. Poniżej wyjaśnienie co to oznacza w praktyce i dlaczego tak robię.</p>
+
+<h3>Dlaczego pracuję z AI</h3>
+<p>W branży IT praca z AI stała się w ciągu ostatnich dwóch lat standardem - większość programistów używa go codziennie do pisania kodu. Różnica jest w tym <em>jak</em>. "Vibe coding" - czyli generowanie kodu bez rozumienia co się dostaje - działa do pewnego momentu, po czym projekt staje się niemożliwy do utrzymania. Tutaj jest inaczej: decyzje architektoniczne, podział na moduły, interfejsy między nimi - to wszystko jest przemyślane przeze mnie zanim AI napisze pierwszą linię. AI implementuje uzgodnione kontrakty, nie podejmuje decyzji projektowych.</p>
+
+<p>Efekt praktyczny: zamiast spędzać wieczór na parsowaniu pakietów Art-Net czy pisaniu boilerplate SwiftUI, spędzam go na decydowaniu jak mapować energię basu na kąt rozsyłu reflektora - i na faktycznym eksperymentowaniu z tym na scenie.</p>
+
+<div class="ai-workflow-grid">
+  <div class="ai-wcard">
+    <h4>Czego AI w tych projektach nie robi</h4>
+    <p>AI nie podejmuje decyzji architektonicznych, nie wybiera mapowań dźwięk-światło, nie ustala co ma artystyczny sens. To zostaje po mojej stronie - i właśnie dlatego jest tu czas na AI do reszty.</p>
+  </div>
+  <div class="ai-wcard">
+    <h4>Czego AI w tych projektach robi</h4>
+    <p>Implementuje uzgodnione interfejsy, generuje boilerplate, tłumaczy między formatami danych, pisze dokumentację na podstawie kodu, debuguje z kontekstem całego projektu w głowie.</p>
+  </div>
+</div>
+
+<h3>Jak projekty są zaprojektowane pod AI</h3>
+<p>Współpraca z AI jest tym sprawniejsza im lepsza struktura projektu. Stąd świadome decyzje w kodzie:</p>
+
+<ul>
+  <li><strong>Separacja modułów z wyraźnymi granicami</strong> - AI może pracować nad jednym pakietem bez kontekstu pozostałych, bo interfejsy są jawne</li>
+  <li><strong>Kontrakt typów między modułami</strong> - cross-module dependencies przez Float/Double, nie przez referencje do obiektów. AI nie musi "domyślać się" jak moduły do siebie pasują</li>
+  <li><strong>Konsekwentne nazewnictwo</strong> - <code>bassStrobeThreshold</code>, <code>accentDecay</code>, <code>sunbeamFlashDuration</code> - nazwy które mówią co to jest, bez komentarzy</li>
+  <li><strong>CLAUDE.md w każdym repozytorium</strong> - plik zawierający kontekst architektoniczny, stack, kluczowe zasady i link do tej dokumentacji. Nowa sesja AI zaczyna od przeczytania tego pliku</li>
+</ul>
+
+<h3>Dokumentacja jako żywy system</h3>
+<p>Ta strona jest zaprojektowana tak, żeby AI mogło ją łatwo czytać i aktualizować maszynowo. Nie zastępuje kodu, ale daje kontekst który w kodzie nie ma miejsca: decyzje, motywacje, powiązania między projektami.</p>
+
+<p>Każde repozytorium ma zainstalowany <strong>post-commit hook</strong>, który po każdym commicie automatycznie aktualizuje sekcję "Ostatnie zmiany" i mini-historię commitów przy każdym projekcie:</p>
+
+<div class="hook-flow">
+  <div class="hstep"><code>git commit</code><small>w LightSim / bass_panel / midi-ledfx</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep"><code>.git/hooks/post-commit</code><small>uruchamia update-docs.sh</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep">aktualizuje<small>HTML w audio-lighting-docs</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep"><code>git push</code><small>do GitHub Pages</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep" style="color:var(--green)">ta strona<small>jest aktualna</small></div>
+</div>
+
+<div class="box tip">
+  <i>📌</i>
+  <div>Dokumentacja jest generowana przy pomocy AI i aktualizowana automatycznie - ale decyzje architektoniczne, kontekst artystyczny i "dlaczego" w tej dokumentacji pochodzą ode mnie. AI jest od "jak", nie od "po co".</div>
+</div>
+
 </section>
 
 <hr>
@@ -652,11 +655,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <div class="commit-log">
   <div class="commit-log-header">Ostatnie commity</div>
 <!-- BP_COMMITS_START -->
-<div class="commit-row"><span class="c-hash">387bc51</span><span class="c-msg">docs: rewrite AI section</span><span class="c-date">2026-05-21 12:07</span></div>
-<div class="commit-row"><span class="c-hash">af47b7a</span><span class="c-msg">docs: Acer Spin 1 ze śmietnika</span><span class="c-date">2026-05-21 03:02</span></div>
-<div class="commit-row"><span class="c-hash">916fca6</span><span class="c-msg">docs: replace bass strobe screenshot</span><span class="c-date">2026-05-21 02:52</span></div>
-<div class="commit-row"><span class="c-hash">77c1ac2</span><span class="c-msg">docs: add LightSim screenshots</span><span class="c-date">2026-05-21 02:51</span></div>
-<div class="commit-row"><span class="c-hash">70f236f</span><span class="c-msg">docs: remove cringe tagline</span><span class="c-date">2026-05-21 02:42</span></div>
+<div class="commit-row"><span class="c-hash">329ac31</span><span class="c-msg">docs: add CLAUDE.md, changelog section, post-commit hook for auto-docs</span><span class="c-date">2026-05-21 02:30</span></div>
 <!-- BP_COMMITS_END -->
 </div>
 
@@ -1177,8 +1176,7 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
     </thead>
     <tbody id="changelog-body">
 <!-- CHANGES_START -->
-<tr><td>2026-05-21 12:07</td><td>Bass Strobe Panel</td><td><code>387bc51</code></td><td>docs: rewrite AI section</td></tr>
-
+<tr><td colspan="4" style="color:var(--muted);text-align:center">Brak wpisów - hook nie uruchomił się jeszcze po konfiguracji.</td></tr>
 <!-- CHANGES_END -->
     </tbody>
   </table>
