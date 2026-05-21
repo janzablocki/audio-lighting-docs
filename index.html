@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oświetlenie Reaktywne na Dźwięk — Dokumentacja</title>
+<title>Oświetlenie Reaktywne na Dźwięk - Dokumentacja</title>
 <style>
   :root {
     --bg: #09090f;
@@ -176,7 +176,7 @@
   <div class="nav-cat">Kontekst</div>
   <a href="#art-context">Inspiracja i geneza</a>
   <a href="#art-context">↳ Church of Sound</a>
-  <a href="#art-context">↳ Demucs — co dalej</a>
+  <a href="#art-context">↳ Demucs - co dalej</a>
   <a href="#overview">Przegląd systemu</a>
   <a href="#concepts">Koncepcje techniczne</a>
 
@@ -215,15 +215,15 @@
 <!-- DISCLAIMER -->
 <div style="background:rgba(123,106,240,.07);border:1px solid rgba(123,106,240,.2);border-radius:var(--r);padding:18px 24px;margin-bottom:28px;font-size:13.5px;line-height:1.7">
   <p style="margin:0 0 8px"><strong style="color:var(--accent)">O tej dokumentacji i sposobie pracy</strong></p>
-  <p style="margin:0;color:var(--muted)">Dokumentacja pisana częściowo przeze mnie, częściowo przy użyciu AI. To nie jest skrót ani zastępstwo — to świadomy workflow. Projekty są celowo zoptymalizowane pod współpracę z AI: decyzje architektoniczne podejmowane z wyprzedzeniem, kontrakt typów między modułami, konsekwentne nazewnictwo, dokumentacja jako źródło prawdy między sesjami. Im lepiej zaprojektowana struktura, tym sprawniej AI porusza się po kodzie i tym mniej czasu tracę na wyjaśnianie kontekstu od nowa.</p>
-  <p style="margin:8px 0 0;color:var(--muted)">Efekt: mogę skupić się na decyzjach twórczych i architektonicznych — co zbudować, dlaczego, jakie mapowanie między dźwiękiem a światłem ma sens artystycznie — a nie na mechanicznym pisaniu boilerplate'u czy dokumentacji rzeczy oczywistych z kodu. AI jest narzędziem w tym samym sensie co kompilator albo edytor — używam go bo przyspiesza pracę, nie dlatego że nie umiem bez niego.</p>
+  <p style="margin:0;color:var(--muted)">Dokumentacja pisana częściowo przeze mnie, częściowo przy użyciu AI. To nie jest skrót ani zastępstwo - to świadomy workflow. Projekty są celowo zoptymalizowane pod współpracę z AI: decyzje architektoniczne podejmowane z wyprzedzeniem, kontrakt typów między modułami, konsekwentne nazewnictwo, dokumentacja jako źródło prawdy między sesjami. Im lepiej zaprojektowana struktura, tym sprawniej AI porusza się po kodzie i tym mniej czasu tracę na wyjaśnianie kontekstu od nowa.</p>
+  <p style="margin:8px 0 0;color:var(--muted)">Efekt: mogę skupić się na decyzjach twórczych i architektonicznych - co zbudować, dlaczego, jakie mapowanie między dźwiękiem a światłem ma sens artystycznie - a nie na mechanicznym pisaniu boilerplate'u czy dokumentacji rzeczy oczywistych z kodu. AI jest narzędziem w tym samym sensie co kompilator albo edytor - używam go bo przyspiesza pracę, nie dlatego że nie umiem bez niego.</p>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="tag">Systemy oświetlenia reaktywnego na dźwięk</div>
   <h1>Oświetlenie Reaktywne na Dźwięk</h1>
-  <p class="lead">Trzy niezależne, współdziałające projekty łączące analizę sygnału audio w czasie rzeczywistym ze sterowaniem oświetleniem scenicznym — od symulatora 3D po fizyczne LED przez DMX i MIDI.</p>
+  <p class="lead">Trzy niezależne, współdziałające projekty łączące analizę sygnału audio w czasie rzeczywistym ze sterowaniem oświetleniem scenicznym - od symulatora 3D po fizyczne LED przez DMX i MIDI.</p>
   <div class="chips">
     <span class="chip a">Swift / macOS</span>
     <span class="chip a">RealityKit</span>
@@ -241,20 +241,20 @@
 <h2>Kontekst artystyczny</h2>
 
 <h3>Inspiracja: Church of Sound @ Borderland</h3>
-<p>Punktem wyjścia dla LightSim była instalacja <strong>Church of Sound</strong> — projekt artystyczny prezentowany na festiwalu <a href="https://www.theborderland.se" target="_blank">Borderland</a> w Szwecji. Borderland to festiwal eksperymentalnej sztuki i społeczności, gdzie uczestniczy tworzą tymczasowe instalacje, performance i przestrzenie wspólnego doświadczenia. Church of Sound to jedna z takich przestrzeni — kościół z wyjątkowo przemyślanym, immersyjnym oświetleniem, gdzie architektura sakralna i dźwięk tworzą jedno środowisko sensoryczne.</p>
+<p>Punktem wyjścia dla LightSim była instalacja <strong>Church of Sound</strong> - projekt artystyczny prezentowany na festiwalu <a href="https://www.theborderland.se" target="_blank">Borderland</a> w Szwecji. Borderland to festiwal eksperymentalnej sztuki i społeczności, gdzie uczestniczy tworzą tymczasowe instalacje, performance i przestrzenie wspólnego doświadczenia. Church of Sound to jedna z takich przestrzeni - kościół z wyjątkowo przemyślanym, immersyjnym oświetleniem, gdzie architektura sakralna i dźwięk tworzą jedno środowisko sensoryczne.</p>
 
-<p>Ten koncept — kościół jako przestrzeń audio-wizualnego doświadczenia — stał się bezpośrednią inspiracją do zbudowania symulatora: playgroundu do eksperymentowania z oświetleniem kościelnej architektury zanim cokolwiek trafi na fizyczny sprzęt.</p>
+<p>Ten koncept - kościół jako przestrzeń audio-wizualnego doświadczenia - stał się bezpośrednią inspiracją do zbudowania symulatora: playgroundu do eksperymentowania z oświetleniem kościelnej architektury zanim cokolwiek trafi na fizyczny sprzęt.</p>
 
 <h3>Diagnoza z przeglądów: granice analizy spektrum</h3>
-<p>Podczas przeglądów na uczelni pojawiła się kluczowa obserwacja: <strong>analiza spektrum FFT to niewystarczające narzędzie do kontroli oświetlenia artystycznego</strong>. Spektrum mówi jak głośne są poszczególne częstotliwości — ale nie mówi <em>co</em> gra. Kick drum na 80 Hz i bas gitarowy na 80 Hz mają identyczny wpływ na pasmo, choć artystycznie są zupełnie różnymi zdarzeniami muzycznymi. Światło reaguje na energię, nie na muzykę.</p>
+<p>Podczas przeglądów na uczelni pojawiła się kluczowa obserwacja: <strong>analiza spektrum FFT to niewystarczające narzędzie do kontroli oświetlenia artystycznego</strong>. Spektrum mówi jak głośne są poszczególne częstotliwości - ale nie mówi <em>co</em> gra. Kick drum na 80 Hz i bas gitarowy na 80 Hz mają identyczny wpływ na pasmo, choć artystycznie są zupełnie różnymi zdarzeniami muzycznymi. Światło reaguje na energię, nie na muzykę.</p>
 
 <div class="box key">
   <i>🔍</i>
-  <div>Konkretny problem: przy miksie gdzie bas gitarowy gra ciągłą linię, stroboskop zaprojektowany pod kick drum odpala niemal bez przerwy — bo widzi energię w paśmie, nie instrument. Słuchacz czuje rozjazd między tym co słyszy a tym co widzi, nawet jeśli nie umie go nazwać.</div>
+  <div>Konkretny problem: przy miksie gdzie bas gitarowy gra ciągłą linię, stroboskop zaprojektowany pod kick drum odpala niemal bez przerwy - bo widzi energię w paśmie, nie instrument. Słuchacz czuje rozjazd między tym co słyszy a tym co widzi, nawet jeśli nie umie go nazwać.</div>
 </div>
 
 <h3>Następny krok: separacja stemów przez Demucs</h3>
-<p><strong>Demucs</strong> (Meta AI Research) to model deep learning do source separation — rozłożenia miksu na osobne stemy: perkusja, bas, wokal, reszta. Zamiast reagować na spektrum całego miksu, każde źródło dźwięku może sterować innym elementem oświetlenia niezależnie.</p>
+<p><strong>Demucs</strong> (Meta AI Research) to model deep learning do source separation - rozłożenia miksu na osobne stemy: perkusja, bas, wokal, reszta. Zamiast reagować na spektrum całego miksu, każde źródło dźwięku może sterować innym elementem oświetlenia niezależnie.</p>
 
 <div class="arch" style="margin-top:16px">
   <div style="display:flex;align-items:center;gap:12px">
@@ -273,18 +273,18 @@
   </div>
 </div>
 
-<p style="margin-top:12px">Kick drum staje się jedynym źródłem triggerów dla stroboskopu. Linia basu steruje sunbeamami niezależnie od tego czy w miksie jest też kick. Wokal może modulować kolor ambient lights. Każdy element przestrzeni reaguje na jeden, konkretny instrument — a nie na sumę wszystkiego.</p>
+<p style="margin-top:12px">Kick drum staje się jedynym źródłem triggerów dla stroboskopu. Linia basu steruje sunbeamami niezależnie od tego czy w miksie jest też kick. Wokal może modulować kolor ambient lights. Każdy element przestrzeni reaguje na jeden, konkretny instrument - a nie na sumę wszystkiego.</p>
 
-<p>LightSim jako symulator 3D jest właściwym playgroundem do testowania tych mapowań <em>przed</em> implementacją na fizycznym sprzęcie — iteracja kosztuje sekundy, nie godziny montażu.</p>
+<p>LightSim jako symulator 3D jest właściwym playgroundem do testowania tych mapowań <em>przed</em> implementacją na fizycznym sprzęcie - iteracja kosztuje sekundy, nie godziny montażu.</p>
 
 <hr style="margin:28px 0">
 
-<p>Oświetlenie sceniczne to medium artystyczne — tak samo jak dźwięk, obraz czy ruch. Reagowanie światłem na muzykę w czasie rzeczywistym nie jest kwestią automatyzacji, lecz <strong>dialogu między sygnałem a przestrzenią</strong>: to samo nagranie brzmi zupełnie inaczej gdy towarzyszy mu puls białego stroboskopu niż gdy przestrzeń kościoła rozświetlają powolne, kolorowe smugi.</p>
+<p>Oświetlenie sceniczne to medium artystyczne - tak samo jak dźwięk, obraz czy ruch. Reagowanie światłem na muzykę w czasie rzeczywistym nie jest kwestią automatyzacji, lecz <strong>dialogu między sygnałem a przestrzenią</strong>: to samo nagranie brzmi zupełnie inaczej gdy towarzyszy mu puls białego stroboskopu niż gdy przestrzeń kościoła rozświetlają powolne, kolorowe smugi.</p>
 
 <div class="grid2" style="margin-top:16px">
   <div class="card">
     <h4>Przestrzeń jako instrument</h4>
-    <p>LightSim symuluje kościół — architekturę o silnym ładunku sakralnym. Sunbeamy naśladują naturalne światło przez witraże. Reaktywność sprawia że przestrzeń "oddycha" razem z muzyką.</p>
+    <p>LightSim symuluje kościół - architekturę o silnym ładunku sakralnym. Sunbeamy naśladują naturalne światło przez witraże. Reaktywność sprawia że przestrzeń "oddycha" razem z muzyką.</p>
   </div>
   <div class="card">
     <h4>Precyzja jako artyzm</h4>
@@ -292,11 +292,11 @@
   </div>
   <div class="card">
     <h4>Haptic feedback</h4>
-    <p>Fizyczny MIDI kontroler wprowadza wymiar cielesny — obrót potencjometru różni się od klikania suwakiem. Gest artysty staje się gestem oświetlenia.</p>
+    <p>Fizyczny MIDI kontroler wprowadza wymiar cielesny - obrót potencjometru różni się od klikania suwakiem. Gest artysty staje się gestem oświetlenia.</p>
   </div>
   <div class="card">
     <h4>Narzędzie zamiast skryptu</h4>
-    <p>Żaden projekt nie jest gotowym "efektem wizualnym". Każdy wymaga świadomego użycia — znajomości muzyki, przestrzeni i technologii jednocześnie.</p>
+    <p>Żaden projekt nie jest gotowym "efektem wizualnym". Każdy wymaga świadomego użycia - znajomości muzyki, przestrzeni i technologii jednocześnie.</p>
   </div>
 </div>
 </section>
@@ -305,7 +305,7 @@
 <section id="overview">
 <h2>Przegląd systemu</h2>
 
-<p>Trzy projekty tworzą jeden ekosystem — są ze sobą połączone i działają razem podczas live setu. MIDI kontroler steruje zarówno efektami LedFX jak i parametrami Bass Strobe Panelu w czasie rzeczywistym. LightSim działa równolegle jako symulator i może wysyłać DMX do tego samego sprzętu.</p>
+<p>Trzy projekty tworzą jeden ekosystem - są ze sobą połączone i działają razem podczas live setu. MIDI kontroler steruje zarówno efektami LedFX jak i parametrami Bass Strobe Panelu w czasie rzeczywistym. LightSim działa równolegle jako symulator i może wysyłać DMX do tego samego sprzętu.</p>
 
 <div class="arch">
   <div class="arch-row">
@@ -339,7 +339,7 @@
 
 <div class="box key" style="margin-top:16px">
   <i>🔗</i>
-  <div><strong>Kluczowe połączenie:</strong> pokrętła k1 i k2 na MIDI kontrolerze sterują bezpośrednio Bass Strobe Panelem — czułością detekcji basu i górną granicą pasma. To samo co klikanie suwaków w przeglądarce, ale przez fizyczny gest podczas live setu, bez patrzenia w ekran. Trzy projekty, jeden performer.</div>
+  <div><strong>Kluczowe połączenie:</strong> pokrętła k1 i k2 na MIDI kontrolerze sterują bezpośrednio Bass Strobe Panelem - czułością detekcji basu i górną granicą pasma. To samo co klikanie suwaków w przeglądarce, ale przez fizyczny gest podczas live setu, bez patrzenia w ekran. Trzy projekty, jeden performer.</div>
 </div>
 
 <div class="grid3" style="margin-top:16px">
@@ -349,11 +349,11 @@
   </div>
   <div class="card">
     <h4>Bass Strobe Panel</h4>
-    <p>Wizualne strojenie detekcji basu w LedFX — obsługiwany przez przeglądarkę <em>lub</em> bezpośrednio z klawiatury MIDI (k1/k2).</p>
+    <p>Wizualne strojenie detekcji basu w LedFX - obsługiwany przez przeglądarkę <em>lub</em> bezpośrednio z klawiatury MIDI (k1/k2).</p>
   </div>
   <div class="card">
     <h4>MIDI Kontroler</h4>
-    <p>Centrum dowodzenia live setu — steruje jednocześnie efektami LedFX, profilami kolorów i parametrami Bass Strobe Panelu.</p>
+    <p>Centrum dowodzenia live setu - steruje jednocześnie efektami LedFX, profilami kolorów i parametrami Bass Strobe Panelu.</p>
   </div>
 </div>
 </section>
@@ -361,12 +361,12 @@
 <section id="concepts">
 <h2>Kluczowe koncepcje techniczne</h2>
 
-<p class="dim" style="color:var(--muted);font-size:13px;margin-bottom:16px">Poniżej — krótki słownik pojęć DSP i protokołów używanych w projektach, dla kontekstu technicznego.</p>
+<p class="dim" style="color:var(--muted);font-size:13px;margin-bottom:16px">Poniżej - krótki słownik pojęć DSP i protokołów używanych w projektach, dla kontekstu technicznego.</p>
 
 <h3>FFT i analiza częstotliwościowa</h3>
-<p>Każdy projekt opiera się na <strong>Fast Fourier Transform</strong> — algorytmie transformującym sygnał audio z dziedziny czasu (amplitudy próbek) do dziedziny częstotliwości (spektrum). Wynik to wektor amplitud dla każdego <em>binu</em> częstotliwościowego. Z tego spektrum wyciągane są cechy używane do sterowania światłami.</p>
+<p>Każdy projekt opiera się na <strong>Fast Fourier Transform</strong> - algorytmie transformującym sygnał audio z dziedziny czasu (amplitudy próbek) do dziedziny częstotliwości (spektrum). Wynik to wektor amplitud dla każdego <em>binu</em> częstotliwościowego. Z tego spektrum wyciągane są cechy używane do sterowania światłami.</p>
 
-<pre><code><span class="cm">// Fragment z AudioAnalyzer.swift (LightSim) — FFT przez Apple Accelerate</span>
+<pre><code><span class="cm">// Fragment z AudioAnalyzer.swift (LightSim) - FFT przez Apple Accelerate</span>
 <span class="cm">// Okno Hanninga 1024 próbek, hop 512 (50% overlap → ok. 60 klatek/sek przy 44.1 kHz)</span>
 vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(log2n), FFTDirection(FFT_FORWARD))
 <span class="cm">// Wynik: bins.count ≈ 512, każdy bin ≈ 43 Hz szerokości</span></code></pre>
@@ -375,10 +375,10 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 <p>Ludzki słuch percepuje częstotliwości logarytmicznie (oktawy, nie Hz). Mel-bank grupuje biny FFT w pasma dopasowane do tej percepcji. Zarówno LightSim (8 pasm) jak i LedFX (pełny mel-bank) używają tej reprezentacji jako wejścia do algorytmów detekcji.</p>
 
 <h3>Detekcja transientów (Spectral Flux)</h3>
-<p>Transient (uderzenie — kick, snare, clap) to nagły wzrost energii spektralnej. Detekcja przez <strong>spectral flux</strong>: suma dodatnich różnic amplitud między kolejnymi klatkami FFT. Adaptacyjny próg z medianą eliminuje fałszywe detekcje przy stopniowym crescendo.</p>
+<p>Transient (uderzenie - kick, snare, clap) to nagły wzrost energii spektralnej. Detekcja przez <strong>spectral flux</strong>: suma dodatnich różnic amplitud między kolejnymi klatkami FFT. Adaptacyjny próg z medianą eliminuje fałszywe detekcje przy stopniowym crescendo.</p>
 
 <h3>DMX i Art-Net</h3>
-<p>DMX-512 to protokół sterowania oświetleniem scenicznym — 512 kanałów, każdy 0–255. Art-Net enkapsuluje DMX w pakiety UDP (port 6454), umożliwiając sterowanie przez sieć Ethernet. LightSim implementuje Art-Net sender; LedFX używa własnego sterownika do fizycznych LED.</p>
+<p>DMX-512 to protokół sterowania oświetleniem scenicznym - 512 kanałów, każdy 0–255. Art-Net enkapsuluje DMX w pakiety UDP (port 6454), umożliwiając sterowanie przez sieć Ethernet. LightSim implementuje Art-Net sender; LedFX używa własnego sterownika do fizycznych LED.</p>
 </section>
 
 <hr>
@@ -387,12 +387,12 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 <div class="proj-badge ls">● LightSim</div>
 
 <section id="ls-about">
-<h2>LightSim — symulator oświetlenia 3D</h2>
+<h2>LightSim - symulator oświetlenia 3D</h2>
 
 <p>Aplikacja macOS renderująca model kościoła w RealityKit, sterująca wirtualnymi lampami scenicznymi zsynchronizowanymi z analizowanym audio. Może jednocześnie wysyłać sygnały DMX przez Art-Net do prawdziwego sprzętu.</p>
 
 <h3>Struktura pakietów SwiftPM</h3>
-<p>Projekt jest podzielony na 5 niezależnych pakietów — każdy może być rozwijany i testowany osobno, co ułatwia separację odpowiedzialności i umożliwia reużycie (np. moduł Audio mógłby być użyty w innym projekcie).</p>
+<p>Projekt jest podzielony na 5 niezależnych pakietów - każdy może być rozwijany i testowany osobno, co ułatwia separację odpowiedzialności i umożliwia reużycie (np. moduł Audio mógłby być użyty w innym projekcie).</p>
 
 <table>
   <tr><th>Pakiet</th><th>Odpowiedzialność</th><th>Kluczowe klasy</th></tr>
@@ -405,7 +405,7 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 </section>
 
 <section id="ls-arch">
-<h2>LightSim — architektura</h2>
+<h2>LightSim - architektura</h2>
 
 <h3>Pipeline przetwarzania</h3>
 <div class="pipe">
@@ -428,11 +428,11 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 </div>
 
 <h3>Kontrakt typów (SHARED.md)</h3>
-<p>Pakiety komunikują się wyłącznie przez typy zdefiniowane w <code>SHARED.md</code> — plik pełni rolę kontraktu API między modułami. Zmiana wymaga synchronizacji wszystkich pakietów.</p>
+<p>Pakiety komunikują się wyłącznie przez typy zdefiniowane w <code>SHARED.md</code> - plik pełni rolę kontraktu API między modułami. Zmiana wymaga synchronizacji wszystkich pakietów.</p>
 
 <pre><code><span class="cm">// Snapshot jednej klatki analizy audio (60 Hz)</span>
 <span class="kw">struct</span> <span class="ty">AudioFeatures</span> {
-    <span class="kw">var</span> rms:       <span class="ty">Float</span>    <span class="cm">// 0…1 — ogólna głośność (RMS znormalizowany)</span>
+    <span class="kw">var</span> rms:       <span class="ty">Float</span>    <span class="cm">// 0…1 - ogólna głośność (RMS znormalizowany)</span>
     <span class="kw">var</span> bands:     [<span class="ty">Float</span>]  <span class="cm">// 8 pasm mel, log-spaced 60 Hz…12 kHz</span>
     <span class="kw">var</span> transient: <span class="ty">Bool</span>     <span class="cm">// true = wykryto nagłe uderzenie (kick/snare)</span>
     <span class="kw">var</span> bpm:       <span class="ty">Float</span>?   <span class="cm">// wykryte tempo lub nil</span>
@@ -440,11 +440,11 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 </section>
 
 <section id="ls-audio">
-<h2>LightSim — analiza audio</h2>
+<h2>LightSim - analiza audio</h2>
 
 <div class="box warn">
   <i>⚙️</i>
-  <div><strong>Moduł tymczasowy.</strong> Obecna implementacja FFT jest placeholderem — zostanie zastąpiona modelem opartym na Demucs, który rozłoży audio na stemy przed analizą. Każdy instrument będzie sterował innym elementem oświetlenia niezależnie, zamiast reagowania na surowe spektrum całego miksu.</div>
+  <div><strong>Moduł tymczasowy.</strong> Obecna implementacja FFT jest placeholderem - zostanie zastąpiona modelem opartym na Demucs, który rozłoży audio na stemy przed analizą. Każdy instrument będzie sterował innym elementem oświetlenia niezależnie, zamiast reagowania na surowe spektrum całego miksu.</div>
 </div>
 
 <h3>8 pasm mel-filtrów</h3>
@@ -457,17 +457,17 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 </table>
 
 <h3>Detekcja transientów</h3>
-<p>Spectral flux na <code>|X|</code> (moduł, nie kwadrat) daje lepszą czułość na szybkie uderzenia perkusyjne. Próg adaptacyjny obliczany z mediany ostatnich klatek (z wyłączeniem 3 ostatnich — unika self-triggering po silnym transiencie). Debounce 3 klatki eliminuje wielokrotne triggery.</p>
+<p>Spectral flux na <code>|X|</code> (moduł, nie kwadrat) daje lepszą czułość na szybkie uderzenia perkusyjne. Próg adaptacyjny obliczany z mediany ostatnich klatek (z wyłączeniem 3 ostatnich - unika self-triggering po silnym transiencie). Debounce 3 klatki eliminuje wielokrotne triggery.</p>
 
 <h3>Tryb plikowy vs. mikrofonowy</h3>
-<p>W trybie plikowym (<code>AVAudioPlayerNode</code>) plik gra przez głośniki macOS <em>i jednocześnie</em> jest analizowany — tap jest założony na <code>mainMixerNode</code>, nie na player node, dzięki czemu analiza widzi sygnał po miksie.</p>
+<p>W trybie plikowym (<code>AVAudioPlayerNode</code>) plik gra przez głośniki macOS <em>i jednocześnie</em> jest analizowany - tap jest założony na <code>mainMixerNode</code>, nie na player node, dzięki czemu analiza widzi sygnał po miksie.</p>
 </section>
 
 <section id="ls-effects">
-<h2>LightSim — efekty świetlne</h2>
+<h2>LightSim - efekty świetlne</h2>
 
 <h3>Sunbeamy (belki świetlne)</h3>
-<p>Emissive geometry z modelu USDZ — nie generowane proceduralnie. Lewy sunbeam pochodzi z pliku, prawy jest jego lustrzanym odbiciem (<code>scale(-1,1,1)</code> po osi X). Odwrócenie znaku skali odwraca winding order trójkątów, dlatego wszystkie materiały mirrored geometry mają <code>faceCulling = .none</code>.</p>
+<p>Emissive geometry z modelu USDZ - nie generowane proceduralnie. Lewy sunbeam pochodzi z pliku, prawy jest jego lustrzanym odbiciem (<code>scale(-1,1,1)</code> po osi X). Odwrócenie znaku skali odwraca winding order trójkątów, dlatego wszystkie materiały mirrored geometry mają <code>faceCulling = .none</code>.</p>
 
 <div class="mblock g">
   <div class="mh">Tryb Sunbeam-only</div>
@@ -476,10 +476,10 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 
 <div class="mblock">
   <div class="mh">Flash naprzemiennie</div>
-  <p style="font-size:13px;color:var(--text)">Na każdy transient: <code>sunbeamFlashSide.toggle()</code> — raz lewy, raz prawy. Z prawdopodobieństwem <em>sunbeamBothChance</em> oba zapalają się jednocześnie. Czas błysku: <em>sunbeamFlashDuration</em> ms.</p>
+  <p style="font-size:13px;color:var(--text)">Na każdy transient: <code>sunbeamFlashSide.toggle()</code> - raz lewy, raz prawy. Z prawdopodobieństwem <em>sunbeamBothChance</em> oba zapalają się jednocześnie. Czas błysku: <em>sunbeamFlashDuration</em> ms.</p>
 </div>
 
-<h3>Accent Lights — kolorowe PointLights</h3>
+<h3>Accent Lights - kolorowe PointLights</h3>
 <p>Dwa PointLights po bokach nawy reagują na energię mid i ogólny RMS. Kluczowy mechanizm: asymetryczny decay sprawia że światła natychmiast skaczą na nową wartość gdy energia rośnie, ale powoli gasną gdy spada.</p>
 
 <pre><code><span class="cm">// Natychmiastowy skok + wykładniczy zanik</span>
@@ -496,20 +496,20 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <h3>Mapowanie fixture'ów → DMX</h3>
 <table>
   <tr><th>Typ</th><th>Intensywność</th><th>Kolor</th></tr>
-  <tr><td class="mono">wash</td><td>RMS × master</td><td>HSV — Hue z mids, S=V=1</td></tr>
+  <tr><td class="mono">wash</td><td>RMS × master</td><td>HSV - Hue z mids, S=V=1</td></tr>
   <tr><td class="mono">spot / blinder</td><td>bas × master</td><td>biały</td></tr>
   <tr><td class="mono">strobe</td><td>master gdy treble>0.3 lub transient</td><td>biały, rate: 200/255</td></tr>
 </table>
 </section>
 
 <section id="ls-settings">
-<h2>LightSim — panel ustawień</h2>
+<h2>LightSim - panel ustawień</h2>
 
 <p>Osobne okno macOS (<code>WindowGroup</code> z id <code>"settings"</code>) z suwakami dla wszystkich parametrów efektów. Zmiany trafiają natychmiast do <code>CueEngine</code> przez <code>@Published</code> i <code>ObservableObject</code>.</p>
 
 <div class="box key">
   <i>🔗</i>
-  <div><strong>Cross-module dependency rozwiązany parametrami:</strong> <code>LightSettings</code> jest w module <code>App</code>, a <code>ViewerViewModel</code> w <code>Viewer</code>. Żeby uniknąć zależności modułowej, wartości z <code>LightSettings</code> są przekazywane jako <code>Float</code> parametry do <code>updateAccentLights()</code> — obiekt ustawień nie jest przekazywany.</div>
+  <div><strong>Cross-module dependency rozwiązany parametrami:</strong> <code>LightSettings</code> jest w module <code>App</code>, a <code>ViewerViewModel</code> w <code>Viewer</code>. Żeby uniknąć zależności modułowej, wartości z <code>LightSettings</code> są przekazywane jako <code>Float</code> parametry do <code>updateAccentLights()</code> - obiekt ustawień nie jest przekazywany.</div>
 </div>
 
 <table>
@@ -525,10 +525,10 @@ accentCurrentIntensity = target > accentCurrentIntensity
 </section>
 
 <section id="ls-realitykit">
-<h2>LightSim — RealityKit: szczegóły techniczne</h2>
+<h2>LightSim - RealityKit: szczegóły techniczne</h2>
 
 <h3>UnlitMaterial vs PhysicallyBasedMaterial</h3>
-<p><code>UnlitMaterial</code> ignoruje wszystkie źródła światła — jest renderowany z pełną jasnością niezależnie od PointLights w scenie. Do ścian reagujących na oświetlenie (accent lights, bass strobe) wymagany jest <code>PhysicallyBasedMaterial</code>. To kluczowa różnica nie oczywista z dokumentacji RealityKit.</p>
+<p><code>UnlitMaterial</code> ignoruje wszystkie źródła światła - jest renderowany z pełną jasnością niezależnie od PointLights w scenie. Do ścian reagujących na oświetlenie (accent lights, bass strobe) wymagany jest <code>PhysicallyBasedMaterial</code>. To kluczowa różnica nie oczywista z dokumentacji RealityKit.</p>
 
 <h3>Kamera orbitalna przez obrót sceny</h3>
 <p>RealityKit nie ma wbudowanej kamery orbitalnej. Rozwiązanie: <em>obracamy całą scenę</em> zamiast poruszać kamerą. Kamera pozostaje nieruchoma (patrzy zawsze w <code>-Z</code>), a <code>sceneRoot.transform.matrix</code> jest ustawiany jako iloczyn translacji, rotacji azymut/elewacja i przesunięcia Z (oddalenie).</p>
@@ -536,7 +536,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <h3>USDZ metersPerUnit gotcha</h3>
 <div class="box warn">
   <i>⚠️</i>
-  <div>USDZ z <code>metersPerUnit = 0.01</code> tworzy wewnętrzny transform <code>×100</code> w RealityKit. Ręczne skalowanie przez <code>entity.scale</code> mnoży ten transform — <code>visualBounds</code> zwraca wartości ×500 zamiast oczekiwanych. Rozwiązanie: nie skalować modelu, tylko wyśrodkować i skalować pozycje fixture'ów przez <code>fixtureScale = rawHeight / 15.0</code>.</div>
+  <div>USDZ z <code>metersPerUnit = 0.01</code> tworzy wewnętrzny transform <code>×100</code> w RealityKit. Ręczne skalowanie przez <code>entity.scale</code> mnoży ten transform - <code>visualBounds</code> zwraca wartości ×500 zamiast oczekiwanych. Rozwiązanie: nie skalować modelu, tylko wyśrodkować i skalować pozycje fixture'ów przez <code>fixtureScale = rawHeight / 15.0</code>.</div>
 </div>
 </section>
 
@@ -546,18 +546,18 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <div class="proj-badge bp">● Bass Strobe Panel</div>
 
 <section id="bp-about">
-<h2>Bass Strobe Panel — panel strojenia detekcji basu</h2>
+<h2>Bass Strobe Panel - panel strojenia detekcji basu</h2>
 
 <p>Webowy panel uruchamiany lokalnie (Python HTTP server na porcie 8889), umożliwiający precyzyjne strojenie parametrów efektu <code>real_strobe</code> w LedFX. Wizualizuje spektrum mel-bank w czasie rzeczywistym, pokazuje historię band power i umożliwia drag-and-drop ustawianie thresholdów.</p>
 
 <div class="box tip">
   <i>💡</i>
-  <div><strong>Przypadek użycia:</strong> DJ ustawia oświetlenie na imprezę. Zanim zacznie muzyka, otwiera panel na telefonie (przez Wi-Fi) i precyzyjnie stroi próg detekcji kick druma — przeciągając linię progu na wykresie spektrum, widząc natychmiast czy algorytm poprawnie wykrywa uderzenia.</div>
+  <div><strong>Przypadek użycia:</strong> DJ ustawia oświetlenie na imprezę. Zanim zacznie muzyka, otwiera panel na telefonie (przez Wi-Fi) i precyzyjnie stroi próg detekcji kick druma - przeciągając linię progu na wykresie spektrum, widząc natychmiast czy algorytm poprawnie wykrywa uderzenia.</div>
 </div>
 </section>
 
 <section id="bp-arch">
-<h2>Bass Strobe Panel — architektura</h2>
+<h2>Bass Strobe Panel - architektura</h2>
 
 <div class="arch">
   <div class="arch-row">
@@ -581,7 +581,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <div class="grid2">
   <div class="card">
     <h4>server.py (port 8889)</h4>
-    <p>Python <code>ThreadingHTTPServer</code> serwujący pliki statyczne (index.html) i udostępniający endpoint <code>POST /param</code> — proxy do LedFX API. Obsługuje też <code>GET /info</code> (zwraca lokalny IP do wyświetlenia w panelu).</p>
+    <p>Python <code>ThreadingHTTPServer</code> serwujący pliki statyczne (index.html) i udostępniający endpoint <code>POST /param</code> - proxy do LedFX API. Obsługuje też <code>GET /info</code> (zwraca lokalny IP do wyświetlenia w panelu).</p>
   </div>
   <div class="card">
     <h4>index.html</h4>
@@ -590,19 +590,19 @@ accentCurrentIntensity = target > accentCurrentIntensity
 </div>
 
 <h3>Dlaczego dwa porty?</h3>
-<p>Panel działa na porcie 8889, ale dane spektrum pobiera <em>bezpośrednio</em> z LedFX (8888) — omijając własny server. <code>server.py</code> jest używany tylko do wysyłania zmian parametrów (proxy) i do serwowania pliku HTML. Polling danych spektrum przez proxy byłoby wolniejsze i niepotrzebne — dane idą najkrótszą drogą.</p>
+<p>Panel działa na porcie 8889, ale dane spektrum pobiera <em>bezpośrednio</em> z LedFX (8888) - omijając własny server. <code>server.py</code> jest używany tylko do wysyłania zmian parametrów (proxy) i do serwowania pliku HTML. Polling danych spektrum przez proxy byłoby wolniejsze i niepotrzebne - dane idą najkrótszą drogą.</p>
 </section>
 
 <section id="bp-ledfx">
-<h2>Bass Strobe Panel — LedFX i efekt real_strobe</h2>
+<h2>Bass Strobe Panel - LedFX i efekt real_strobe</h2>
 
-<p>LedFX to open-source system sterowania LED zsynchronizowany z muzyką (<a href="https://ledfx.app" target="_blank">ledfx.app</a>). Efekt <code>real_strobe</code> to specjalny plugin z własną detekcją basu wewnątrz LedFX — panel nie reimplementuje detekcji, tylko steruje jej parametrami przez API.</p>
+<p>LedFX to open-source system sterowania LED zsynchronizowany z muzyką (<a href="https://ledfx.app" target="_blank">ledfx.app</a>). Efekt <code>real_strobe</code> to specjalny plugin z własną detekcją basu wewnątrz LedFX - panel nie reimplementuje detekcji, tylko steruje jej parametrami przez API.</p>
 
 <h3>Parametry real_strobe (strojone przez panel)</h3>
 <table>
   <tr><th>Parametr</th><th>Opis</th></tr>
-  <tr><td class="mono">detection_mode</td><td>"Standard (Kick)", "DnB (Rolling Bass)", "Sub-Bass Only" — zmienia algorytm detekcji</td></tr>
-  <tr><td class="mono">bass_threshold</td><td>0.0–1.0 — minimalny poziom band power do wyzwolenia strobe</td></tr>
+  <tr><td class="mono">detection_mode</td><td>"Standard (Kick)", "DnB (Rolling Bass)", "Sub-Bass Only" - zmienia algorytm detekcji</td></tr>
+  <tr><td class="mono">bass_threshold</td><td>0.0–1.0 - minimalny poziom band power do wyzwolenia strobe</td></tr>
   <tr><td class="mono">detection_min_hz</td><td>dolna granica pasma detekcji (Hz)</td></tr>
   <tr><td class="mono">detection_max_hz</td><td>górna granica pasma detekcji (Hz)</td></tr>
 </table>
@@ -612,7 +612,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
   <tr><th>Pole</th><th>Typ</th><th>Opis</th></tr>
   <tr><td class="mono">band_power</td><td class="dim">float 0–1</td><td>Aktualna moc w wybranym paśmie detekcji</td></tr>
   <tr><td class="mono">bass_triggered</td><td class="dim">bool</td><td>Czy próg jest przekroczony (tryb Standard)</td></tr>
-  <tr><td class="mono">bass_fire_count</td><td class="dim">int</td><td>Licznik wyzwoleń strobe — inkrementowany przy każdym fire</td></tr>
+  <tr><td class="mono">bass_fire_count</td><td class="dim">int</td><td>Licznik wyzwoleń strobe - inkrementowany przy każdym fire</td></tr>
   <tr><td class="mono">bass_cooldown</td><td class="dim">bool</td><td>Czy trwa cooldown po ostatnim wyzwoleniu</td></tr>
   <tr><td class="mono">det_melbank / det_frequencies</td><td class="dim">array</td><td>Mel-bank przefiltrowany do pasma detekcji (do wizualizacji)</td></tr>
   <tr><td class="mono">melbank / frequencies</td><td class="dim">array</td><td>Pełny mel-bank (tło spektrum)</td></tr>
@@ -620,17 +620,17 @@ accentCurrentIntensity = target > accentCurrentIntensity
 </section>
 
 <section id="bp-ui">
-<h2>Bass Strobe Panel — interfejs</h2>
+<h2>Bass Strobe Panel - interfejs</h2>
 
 <div style="border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px">
   <img src="bass-strobe-screenshot.png" alt="Bass Strobe Panel" style="width:100%;display:block">
 </div>
 
 <h3>Wizualizacja spektrum (canvas 2D)</h3>
-<p>Górny canvas rysuje mel-bank na logarytmicznej osi X (20–500 Hz). Zaznaczone pasmo detekcji (między minHz a maxHz) jest podświetlone. Zielona pozioma linia pokazuje aktualny <code>band_power</code>; żółta przerywana — próg. Oba elementy można <strong>przeciągać myszą</strong> bezpośrednio na wykresie.</p>
+<p>Górny canvas rysuje mel-bank na logarytmicznej osi X (20–500 Hz). Zaznaczone pasmo detekcji (między minHz a maxHz) jest podświetlone. Zielona pozioma linia pokazuje aktualny <code>band_power</code>; żółta przerywana - próg. Oba elementy można <strong>przeciągać myszą</strong> bezpośrednio na wykresie.</p>
 
 <h3>Historia band power (canvas 2D)</h3>
-<p>Dolny canvas pokazuje ostatnie 300 klatek (~5 sekund) band power jako linię — zieloną gdy powyżej progu, czerwoną gdy poniżej. Pionowe czerwone flash markery wskazują momenty wyzwolenia strobe. Żółta przerywana linia = aktualny próg.</p>
+<p>Dolny canvas pokazuje ostatnie 300 klatek (~5 sekund) band power jako linię - zieloną gdy powyżej progu, czerwoną gdy poniżej. Pionowe czerwone flash markery wskazują momenty wyzwolenia strobe. Żółta przerywana linia = aktualny próg.</p>
 
 <h3>Wskaźniki stanu (pills)</h3>
 <div class="grid3">
@@ -640,7 +640,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
   </div>
   <div class="card">
     <h4>cooldown: ACTIVE / ready</h4>
-    <p>Żółty podczas cooldown — strobe może być zablokowane mimo sygnału.</p>
+    <p>Żółty podczas cooldown - strobe może być zablokowane mimo sygnału.</p>
   </div>
   <div class="card">
     <h4>STROBE FIRING / idle</h4>
@@ -651,7 +651,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <h3>Tryby detekcji</h3>
 <div class="mblock">
   <div class="mh">Standard (Kick)</div>
-  <p style="font-size:13px;color:var(--text)">Detekcja przez LedFX wewnętrznie (<code>bass_triggered</code>). Próg na spektrum niewidoczny — LedFX sam decyduje o transiencie.</p>
+  <p style="font-size:13px;color:var(--text)">Detekcja przez LedFX wewnętrznie (<code>bass_triggered</code>). Próg na spektrum niewidoczny - LedFX sam decyduje o transiencie.</p>
 </div>
 <div class="mblock g">
   <div class="mh">DnB (Rolling Bass) / Sub-Bass Only</div>
@@ -660,25 +660,25 @@ accentCurrentIntensity = target > accentCurrentIntensity
 </section>
 
 <section id="bp-api">
-<h2>Bass Strobe Panel — API serwera</h2>
+<h2>Bass Strobe Panel - API serwera</h2>
 
 <pre><code><span class="cm"># Uruchomienie</span>
 <span class="fn">python3</span> server.py
 <span class="cm"># lub</span>
 <span class="fn">./start.sh</span>     <span class="cm"># wyświetla też lokalny IP (np. http://192.168.1.x:8889)</span>
 
-<span class="cm"># GET /info — zwraca lokalny IP i port (do wyświetlenia w panelu)</span>
+<span class="cm"># GET /info - zwraca lokalny IP i port (do wyświetlenia w panelu)</span>
 <span class="cm"># Response: {"ip": "192.168.1.42", "port": 8889}</span>
 
-<span class="cm"># POST /param — aktualizuje parametry efektu real_strobe we wszystkich</span>
+<span class="cm"># POST /param - aktualizuje parametry efektu real_strobe we wszystkich</span>
 <span class="cm">#              wirtualach LedFX które mają ten efekt aktywny</span>
 <span class="cm"># Request body: {"detection_mode": "DnB (Rolling Bass)", "bass_threshold": 0.4}</span>
 <span class="cm"># Response 200: {"ok": true, "targets": ["virtual_id_1"]}</span>
-<span class="cm"># Response 502: {"ok": false, "targets": []} — LedFX niedostępny</span></code></pre>
+<span class="cm"># Response 502: {"ok": false, "targets": []} - LedFX niedostępny</span></code></pre>
 
 <div class="box info">
   <i>ℹ️</i>
-  <div>Serwer automatycznie <strong>odkrywa wirtuale LedFX</strong> z aktywnym efektem <code>real_strobe</code> przy każdym żądaniu — nie trzeba konfigurować nazw wirtuali. Jeśli jest ich kilka, parametry są wysyłane do wszystkich jednocześnie.</div>
+  <div>Serwer automatycznie <strong>odkrywa wirtuale LedFX</strong> z aktywnym efektem <code>real_strobe</code> przy każdym żądaniu - nie trzeba konfigurować nazw wirtuali. Jeśli jest ich kilka, parametry są wysyłane do wszystkich jednocześnie.</div>
 </div>
 </section>
 
@@ -688,18 +688,18 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <div class="proj-badge midi">● MIDI Kontroler</div>
 
 <section id="midi-about">
-<h2>MIDI Kontroler — midi_ledfx.py</h2>
+<h2>MIDI Kontroler - midi_ledfx.py</h2>
 
-<p>Skrypt Python uruchamiany na laptopie Acer (Linux Debian), mapujący fizyczny kontroler <strong>Akai MPK Mini</strong> na wielourządzeniowy system oświetlenia LED. Jeden skrypt koordynuje: efekty LedFX na taśmach LED, natywne efekty WLED, parametry bass strobe panelu — wszystko w czasie rzeczywistym, z pełnym TUI dashboard w terminalu.</p>
+<p>Skrypt Python uruchamiany na laptopie Acer (Linux Debian), mapujący fizyczny kontroler <strong>Akai MPK Mini</strong> na wielourządzeniowy system oświetlenia LED. Jeden skrypt koordynuje: efekty LedFX na taśmach LED, natywne efekty WLED, parametry bass strobe panelu - wszystko w czasie rzeczywistym, z pełnym TUI dashboard w terminalu.</p>
 
 <div class="box key">
   <i>🎹</i>
-  <div><strong>Koncepcja:</strong> fizyczny kontroler jako instrument performatywny. 8 padów × 2 banki = sceny i kolory. 8 pokręteł = precyzja parametrów. Obrót k1 zmienia czułość basu w czasie rzeczywistym — to samo co klikanie suwaka w Bass Strobe Panel, ale przez gest dłoni podczas live setu.</div>
+  <div><strong>Koncepcja:</strong> fizyczny kontroler jako instrument performatywny. 8 padów × 2 banki = sceny i kolory. 8 pokręteł = precyzja parametrów. Obrót k1 zmienia czułość basu w czasie rzeczywistym - to samo co klikanie suwaka w Bass Strobe Panel, ale przez gest dłoni podczas live setu.</div>
 </div>
 </section>
 
 <section id="midi-hw">
-<h2>MIDI Kontroler — hardware</h2>
+<h2>MIDI Kontroler - hardware</h2>
 
 <div class="grid2">
   <div class="card">
@@ -715,7 +715,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <h3>Podłączone urządzenia LED</h3>
 <table>
   <tr><th>Urządzenie</th><th>Adres</th><th>Protokół</th><th>Rola</th></tr>
-  <tr><td class="mono">string (LedFX virtual)</td><td class="dim">przez LedFX</td><td>LedFX API</td><td>Taśma LED główna — efekty reaktywne na audio</td></tr>
+  <tr><td class="mono">string (LedFX virtual)</td><td class="dim">przez LedFX</td><td>LedFX API</td><td>Taśma LED główna - efekty reaktywne na audio</td></tr>
   <tr><td class="mono">string-foreground</td><td class="dim">przez LedFX</td><td>LedFX API</td><td>Przedni layer blender (scan, scroll, rain…)</td></tr>
   <tr><td class="mono">string-background</td><td class="dim">przez LedFX</td><td>LedFX API</td><td>Tylny layer blender (real_strobe)</td></tr>
   <tr><td class="mono">cob-1 / cob</td><td class="dim">przez LedFX</td><td>LedFX API</td><td>COB LED (mocne białe/kolorowe akcenty)</td></tr>
@@ -725,7 +725,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 </section>
 
 <section id="midi-arch">
-<h2>MIDI Kontroler — architektura</h2>
+<h2>MIDI Kontroler - architektura</h2>
 
 <h3>Model wątków</h3>
 <div class="arch">
@@ -750,7 +750,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 </div>
 
 <h3>Kluczowy mechanizm: always-latest queue</h3>
-<p>Szybkie ruchy pokrętłem generują dziesiątki wiadomości MIDI na sekundę. Wysłanie każdej do LedFX przez HTTP zaprowadziłoby do kolejki opóźnień. Rozwiązanie: worker wątku <strong>zawsze wyrzuca starsze żądania</strong> — przy każdym wykonaniu opróżnia kolejkę do końca i wykonuje tylko ostatnią wartość.</p>
+<p>Szybkie ruchy pokrętłem generują dziesiątki wiadomości MIDI na sekundę. Wysłanie każdej do LedFX przez HTTP zaprowadziłoby do kolejki opóźnień. Rozwiązanie: worker wątku <strong>zawsze wyrzuca starsze żądania</strong> - przy każdym wykonaniu opróżnia kolejkę do końca i wykonuje tylko ostatnią wartość.</p>
 
 <pre><code><span class="cm"># Uproszczony schemat _request_worker</span>
 <span class="kw">while</span> True:
@@ -760,11 +760,11 @@ accentCurrentIntensity = target > accentCurrentIntensity
     fn(*args)                         <span class="cm"># wykonaj tylko najnowsze</span></code></pre>
 
 <h3>Startup sync</h3>
-<p>Przy starcie skrypt pobiera bieżący stan z LedFX i WLED przez API — dzięki temu TUI pokazuje aktualny efekt i wartości parametrów, a pokrętła startują z poprawnymi pozycjami (bez "skoku" przy pierwszym ruchu).</p>
+<p>Przy starcie skrypt pobiera bieżący stan z LedFX i WLED przez API - dzięki temu TUI pokazuje aktualny efekt i wartości parametrów, a pokrętła startują z poprawnymi pozycjami (bez "skoku" przy pierwszym ruchu).</p>
 </section>
 
 <section id="midi-pads">
-<h2>MIDI Kontroler — pady (Bank R i Bank G)</h2>
+<h2>MIDI Kontroler - pady (Bank R i Bank G)</h2>
 
 <h3>Mapowanie MIDI Note → akcja</h3>
 <table>
@@ -773,21 +773,21 @@ accentCurrentIntensity = target > accentCurrentIntensity
   <tr><td>Bank G</td><td class="mono">44–51</td><td>0–7</td><td>Zastosuj profil kolorów (1 z 8)</td></tr>
 </table>
 
-<h3>Bank R — tryby efektów</h3>
+<h3>Bank R - tryby efektów</h3>
 <div class="mblock">
-  <div class="mh">Tryb LEDfx — Non-Blender</div>
+  <div class="mh">Tryb LEDfx - Non-Blender</div>
   <p style="font-size:13px;color:var(--text)">Pady 1–8 przełączają między 8 efektami: Blender, Strobe, Energy, Power, Scroll, Bands, Bar, Scan. Każdy pad ładuje inny typ efektu na główny virtual <code>string</code>.</p>
 </div>
 <div class="mblock g">
-  <div class="mh">Tryb LEDfx — Blender</div>
+  <div class="mh">Tryb LEDfx - Blender</div>
   <p style="font-size:13px;color:var(--text)">Gdy aktywny efekt to Blender, pady ładują pełne <strong>presety</strong> (foreground + background + COB jednocześnie). Jeden przycisk = kompletna scena oświetleniowa. Przykłady: Rain+Strobe, Scan+Ocean, Scroll Blue, ScanM+Ocean, ScanM+Fire.</p>
 </div>
 <div class="mblock o">
   <div class="mh">Tryb WLED</div>
-  <p style="font-size:13px;color:var(--text)">Gdy virtual jest wyłączony z LedFX i sterowany WLED native, pady przełączają 8 natywnych efektów WLED: Solid, Rainbow, Fire 2012, Scan, Breathe, Twinkle, Meteor, Colorwaves — z predefiniowaną prędkością i intensywnością.</p>
+  <p style="font-size:13px;color:var(--text)">Gdy virtual jest wyłączony z LedFX i sterowany WLED native, pady przełączają 8 natywnych efektów WLED: Solid, Rainbow, Fire 2012, Scan, Breathe, Twinkle, Meteor, Colorwaves - z predefiniowaną prędkością i intensywnością.</p>
 </div>
 
-<h3>Bank G — profile kolorów</h3>
+<h3>Bank G - profile kolorów</h3>
 <p>8 padów = 8 profili kolorystycznych. Każdy profil to 4 nazwane sloty kolorów stosowane do wszystkich aktywnych urządzeń jednocześnie.</p>
 <div class="grid2">
   <div class="card" style="padding:12px 16px">
@@ -846,7 +846,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 </section>
 
 <section id="midi-knobs">
-<h2>MIDI Kontroler — pokrętła (k1–k8)</h2>
+<h2>MIDI Kontroler - pokrętła (k1–k8)</h2>
 
 <p>8 pokręteł wysyła CC 1–8 z wartościami 0–127. k1 i k2 mają stałe mapowanie; k3–k8 zmieniają się w zależności od aktywnego efektu.</p>
 
@@ -857,19 +857,19 @@ accentCurrentIntensity = target > accentCurrentIntensity
     <td class="mono">k1</td><td class="num">1</td>
     <td class="mono">bass_threshold</td>
     <td class="dim">0.0 – 1.0</td>
-    <td>Bass Strobe Panel — czułość detekcji basu (POST /param)</td>
+    <td>Bass Strobe Panel - czułość detekcji basu (POST /param)</td>
   </tr>
   <tr>
     <td class="mono">k2</td><td class="num">2</td>
     <td class="mono">detection_max_hz</td>
     <td class="dim">40 – 500 Hz</td>
-    <td>Bass Strobe Panel — górna granica pasma detekcji</td>
+    <td>Bass Strobe Panel - górna granica pasma detekcji</td>
   </tr>
 </table>
 
 <div class="box info">
   <i>ℹ️</i>
-  <div><strong>k1 i k2 łączą dwa projekty na żywo:</strong> kręcenie k1 zmienia próg w Bass Strobe Panel — te same parametry co suwaki w przeglądarce, ale przez fizyczny gest. Podczas live setu możesz jedną ręką strić bas bez patrzenia w ekran.</div>
+  <div><strong>k1 i k2 łączą dwa projekty na żywo:</strong> kręcenie k1 zmienia próg w Bass Strobe Panel - te same parametry co suwaki w przeglądarce, ale przez fizyczny gest. Podczas live setu możesz jedną ręką strić bas bez patrzenia w ekran.</div>
 </div>
 
 <h3>Efekt-zależne mapowania (k3–k8)</h3>
@@ -886,15 +886,15 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <table>
   <tr><th>Krzywa</th><th>Wzór</th><th>Kiedy używana</th></tr>
   <tr><td class="mono">linear</td><td class="dim">val = lo + (midi/127) × (hi–lo)</td><td>Większość parametrów (prędkości, zakresy)</td></tr>
-  <tr><td class="mono">low</td><td class="dim">t = (midi/127)², val = lo + t × (hi–lo)</td><td>Szerokości, intensywności — precyzja przy niskich wartościach</td></tr>
-  <tr><td class="mono">mid_low</td><td class="dim">krzywa sigmoidalna (środek ~40% zakresu)</td><td>Decay rates — perceptualnie liniowa kontrola zaniku</td></tr>
+  <tr><td class="mono">low</td><td class="dim">t = (midi/127)², val = lo + t × (hi–lo)</td><td>Szerokości, intensywności - precyzja przy niskich wartościach</td></tr>
+  <tr><td class="mono">mid_low</td><td class="dim">krzywa sigmoidalna (środek ~40% zakresu)</td><td>Decay rates - perceptualnie liniowa kontrola zaniku</td></tr>
 </table>
 </section>
 
 <section id="midi-presets">
-<h2>MIDI Kontroler — presety Blender</h2>
+<h2>MIDI Kontroler - presety Blender</h2>
 
-<p>Tryb Blender to wielowarstwowy renderer LedFX: <strong>foreground</strong> (efekt reaktywny na audio) miksowany z <strong>background</strong> (real_strobe bass-triggered) + osobny COB. Preset to atomiczny stan wszystkich trzech warstw — jeden przycisk ładuje całą scenę.</p>
+<p>Tryb Blender to wielowarstwowy renderer LedFX: <strong>foreground</strong> (efekt reaktywny na audio) miksowany z <strong>background</strong> (real_strobe bass-triggered) + osobny COB. Preset to atomiczny stan wszystkich trzech warstw - jeden przycisk ładuje całą scenę.</p>
 
 <table>
   <tr><th>Preset</th><th>Foreground</th><th>Background</th><th>COB</th></tr>
@@ -907,12 +907,12 @@ accentCurrentIntensity = target > accentCurrentIntensity
 
 <div class="box tip">
   <i>💡</i>
-  <div><strong>Interakcja Preset + Profil kolorów:</strong> po załadowaniu presetu (Bank R) można nacisnąć pad Bank G żeby natychmiast nałożyć profil kolorów — skrypt ponownie aplikuje mapowanie kolorów po załadowaniu sceny. Działa jak dwuwymiarowa matryca: wiersz = scena, kolumna = paleta.</div>
+  <div><strong>Interakcja Preset + Profil kolorów:</strong> po załadowaniu presetu (Bank R) można nacisnąć pad Bank G żeby natychmiast nałożyć profil kolorów - skrypt ponownie aplikuje mapowanie kolorów po załadowaniu sceny. Działa jak dwuwymiarowa matryca: wiersz = scena, kolumna = paleta.</div>
 </div>
 </section>
 
 <section id="midi-colors">
-<h2>MIDI Kontroler — EFFECT_COLOR_MAP</h2>
+<h2>MIDI Kontroler - EFFECT_COLOR_MAP</h2>
 
 <p>Każdy efekt LedFX używa inaczej nazwanych parametrów kolorów. <code>EFFECT_COLOR_MAP</code> tłumaczy abstrakcyjne sloty profilu (primary/secondary/accent) na konkretne nazwy parametrów API dla każdego efektu:</p>
 
@@ -927,13 +927,13 @@ accentCurrentIntensity = target > accentCurrentIntensity
                    <span class="st">"secondary"</span>: <span class="st">"mids_color"</span>},
 }</code></pre>
 
-<p>Dzięki temu zmiana profilu kolorów działa poprawnie niezależnie od aktywnego efektu — skrypt zna "tłumaczenie" dla każdego efektu i wysyła właściwe parametry API.</p>
+<p>Dzięki temu zmiana profilu kolorów działa poprawnie niezależnie od aktywnego efektu - skrypt zna "tłumaczenie" dla każdego efektu i wysyła właściwe parametry API.</p>
 </section>
 
 <section id="midi-tui">
-<h2>MIDI Kontroler — TUI Dashboard</h2>
+<h2>MIDI Kontroler - TUI Dashboard</h2>
 
-<p>Curses terminal UI uruchamiany na laptopie Acer — daje pełny wgląd w stan systemu bez otwierania przeglądarki.</p>
+<p>Curses terminal UI uruchamiany na laptopie Acer - daje pełny wgląd w stan systemu bez otwierania przeglądarki.</p>
 
 <div class="card" style="padding:0;overflow:hidden">
   <img src="tui-screenshot.png" alt="MIDI LED Controller TUI Dashboard" style="width:100%;display:block;border-radius:var(--r)">
@@ -981,7 +981,7 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
 
 <div class="box info">
   <i>ℹ️</i>
-  <div>TUI używa <strong>256-kolorowego terminala</strong> — 64 pary kolorów dla koła barw (HSV hue 0°–360°), 12 par dla gradientowego paska latencji. Urządzenia bez 256 kolorów pokazują uproszczoną wersję.</div>
+  <div>TUI używa <strong>256-kolorowego terminala</strong> - 64 pary kolorów dla koła barw (HSV hue 0°–360°), 12 par dla gradientowego paska latencji. Urządzenia bez 256 kolorów pokazują uproszczoną wersję.</div>
 </div>
 </section>
 
@@ -989,7 +989,7 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
 
 <!-- ══════════════════════ SUMMARY ══════════════════════ -->
 <section id="summary">
-<h2>Zestawienie — co każdy projekt demonstruje</h2>
+<h2>Zestawienie - co każdy projekt demonstruje</h2>
 
 <table>
   <tr><th>Aspekt</th><th>LightSim</th><th>Bass Strobe Panel</th><th>MIDI Kontroler</th></tr>
@@ -1003,13 +1003,13 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
     <td>Analiza audio</td>
     <td>Własna implementacja FFT (Accelerate/vDSP), mel-banki, transient detector</td>
     <td>Delegowana do LedFX (real_strobe plugin)</td>
-    <td>Delegowana do LedFX (real_strobe) — sterowana przez MIDI k1/k2</td>
+    <td>Delegowana do LedFX (real_strobe) - sterowana przez MIDI k1/k2</td>
   </tr>
   <tr>
     <td>Rendering</td>
-    <td>RealityKit — PointLight, SpotLight, UnlitMaterial, PBR</td>
-    <td>Canvas 2D — spektrum log, historia czasowa</td>
-    <td>—</td>
+    <td>RealityKit - PointLight, SpotLight, UnlitMaterial, PBR</td>
+    <td>Canvas 2D - spektrum log, historia czasowa</td>
+    <td>-</td>
   </tr>
   <tr>
     <td>Protokół wyjściowy</td>
@@ -1033,7 +1033,7 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
 
 <div class="box tip" style="margin-top: 20px">
   <i>🎯</i>
-  <div>Wspólny mianownik wszystkich trzech projektów: <strong>sygnał audio w czasie rzeczywistym → parametry oświetlenia</strong>. Każdy projekt rozwiązuje ten problem na innym poziomie abstrakcji i z innym stosem technologicznym — od niskopoziomowego DSP w C (przez Swift Accelerate) przez REST API po fizyczny hardware MIDI.</div>
+  <div>Wspólny mianownik wszystkich trzech projektów: <strong>sygnał audio w czasie rzeczywistym → parametry oświetlenia</strong>. Każdy projekt rozwiązuje ten problem na innym poziomie abstrakcji i z innym stosem technologicznym - od niskopoziomowego DSP w C (przez Swift Accelerate) przez REST API po fizyczny hardware MIDI.</div>
 </div>
 </section>
 
