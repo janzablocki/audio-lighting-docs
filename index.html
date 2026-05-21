@@ -161,6 +161,33 @@
   .proj-badge.ls { background: rgba(123,106,240,.12); color: var(--accent); border: 1px solid rgba(123,106,240,.3); }
   .proj-badge.bp { background: rgba(61,255,160,.08); color: var(--green); border: 1px solid rgba(61,255,160,.25); }
   .proj-badge.midi { background: rgba(245,166,35,.08); color: var(--orange); border: 1px solid rgba(245,166,35,.25); }
+
+  /* ── Repo meta + commit log ── */
+  .proj-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: -2px 0 20px; }
+  .repo-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); border: 1px solid var(--border); border-radius: var(--rs); padding: 4px 10px; background: var(--surface); text-decoration: none; transition: all .15s; }
+  .repo-link:hover { color: var(--text); border-color: rgba(255,255,255,.2); text-decoration: none; }
+  .repo-link svg { opacity: .6; }
+  .repo-tag { font-size: 10px; padding: 3px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: var(--surface2); }
+  .repo-tag.private { color: var(--orange); border-color: rgba(245,166,35,.25); background: rgba(245,166,35,.06); }
+
+  .commit-log { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 28px; }
+  .commit-log-header { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); padding: 8px 14px; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .commit-row { display: grid; grid-template-columns: 70px 1fr 130px; align-items: center; gap: 12px; padding: 8px 14px; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+  .commit-row:last-child { border-bottom: none; }
+  .commit-row:nth-child(even) { background: rgba(255,255,255,.015); }
+  .c-hash { font-family: 'SF Mono',Menlo,monospace; font-size: 11px; color: var(--accent); background: rgba(123,106,240,.1); border-radius: 3px; padding: 1px 6px; display: inline-block; }
+  .c-msg { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .c-date { color: var(--muted); font-size: 11px; text-align: right; white-space: nowrap; }
+
+  /* ── AI workflow section ── */
+  .ai-workflow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+  .ai-wcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 20px; }
+  .ai-wcard h4 { color: var(--accent); font-size: 12px; text-transform: none; letter-spacing: 0; margin: 0 0 8px; font-weight: 600; }
+  .ai-wcard p { color: var(--muted); font-size: 13px; margin: 0; line-height: 1.6; }
+  .hook-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 16px 0; font-size: 12px; }
+  .hstep { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--rs); padding: 9px 14px; text-align: center; }
+  .hstep small { display: block; color: var(--muted); font-size: 10px; margin-top: 2px; }
+  .harrow { color: var(--muted); padding: 0 8px; font-size: 14px; }
 </style>
 </head>
 <body>
@@ -174,9 +201,8 @@
   </div>
 
   <div class="nav-cat">Kontekst</div>
+  <a href="#ai-workflow">Workflow z AI</a>
   <a href="#art-context">Inspiracja i geneza</a>
-  <a href="#art-context">↳ Church of Sound</a>
-  <a href="#art-context">↳ Demucs - co dalej</a>
   <a href="#overview">Przegląd systemu</a>
   <a href="#concepts">Koncepcje techniczne</a>
 
@@ -215,13 +241,61 @@
 <!-- ════ MAIN ════ -->
 <main>
 
-<!-- DISCLAIMER -->
-<div style="background:rgba(123,106,240,.07);border:1px solid rgba(123,106,240,.2);border-radius:var(--r);padding:18px 24px;margin-bottom:28px;font-size:13.5px;line-height:1.7">
-  <p style="margin:0 0 8px"><strong style="color:var(--accent)">O tej dokumentacji i sposobie pracy</strong></p>
-  <p style="margin:0;color:var(--muted)">Dokumentacja pisana częściowo przeze mnie, częściowo przy użyciu AI. To nie jest skrót ani zastępstwo - to świadomy workflow. Projekty są celowo zoptymalizowane pod współpracę z AI: decyzje architektoniczne podejmowane z wyprzedzeniem, kontrakt typów między modułami, konsekwentne nazewnictwo, dokumentacja jako źródło prawdy między sesjami. Im lepiej zaprojektowana struktura, tym sprawniej AI porusza się po kodzie i tym mniej czasu tracę na wyjaśnianie kontekstu od nowa.</p>
-  <p style="margin:8px 0 0;color:var(--muted)">Efekt: mogę skupić się na decyzjach twórczych i architektonicznych - co zbudować, dlaczego, jakie mapowanie między dźwiękiem a światłem ma sens artystycznie - a nie na mechanicznym pisaniu boilerplate'u czy dokumentacji rzeczy oczywistych z kodu. AI jest narzędziem w tym samym sensie co kompilator albo edytor - używam go bo przyspiesza pracę, nie dlatego że nie umiem bez niego.</p>
-  <p style="margin:8px 0 0;color:var(--muted)"><strong style="color:var(--text)">Dokumentacja jest dynamiczna.</strong> Jej głównym odbiorcą i redaktorem jest AI - jest zaprojektowana tak, żeby było ją łatwo czytać i aktualizować maszynowo. Każdy commit do repozytoriów projektów triggeruje hook, który aktualizuje tę stronę. Sekcja "Ostatnie zmiany" poniżej jest generowana automatycznie.</p>
+<!-- AI WORKFLOW -->
+<section id="ai-workflow">
+<h2>Workflow z AI</h2>
+
+<p>Ta dokumentacja i projekty które opisuje są zoptymalizowane pod współpracę z AI - świadomie i celowo, nie jako skrót. Poniżej wyjaśnienie co to oznacza w praktyce i dlaczego tak robię.</p>
+
+<h3>Dlaczego AI - nie pomimo, tylko dlatego</h3>
+<p>Pracuję z AI tak samo jak z kompilatorem albo edytorem: bo przyspiesza pracę i pozwala skupić się na decyzjach które rzeczywiście wymagają uwagi. Kod jest generowany szybciej, dokumentacja powstaje równolegle z implementacją, a powtarzalne wzorce (mapowania, protokoły sieciowe, boilerplate SwiftUI) nie absorbują czasu który lepiej poświęcić na pytania architektoniczne i artystyczne.</p>
+
+<p>Efekt: zamiast spędzać wieczór na pisaniu kodu do parsowania pakietów Art-Net, spędzam go na decydowaniu jak mapować energię basu na kąt rozsyłu reflektora - i na faktycznym eksperymentowaniu z tą mapą na scenie.</p>
+
+<div class="ai-workflow-grid">
+  <div class="ai-wcard">
+    <h4>Czego AI w tych projektach nie robi</h4>
+    <p>AI nie podejmuje decyzji architektonicznych, nie wybiera mapowań dźwięk-światło, nie ustala co ma artystyczny sens. To zostaje po mojej stronie - i właśnie dlatego jest tu czas na AI do reszty.</p>
+  </div>
+  <div class="ai-wcard">
+    <h4>Czego AI w tych projektach robi</h4>
+    <p>Implementuje uzgodnione interfejsy, generuje boilerplate, tłumaczy między formatami danych, pisze dokumentację na podstawie kodu, debuguje z kontekstem całego projektu w głowie.</p>
+  </div>
 </div>
+
+<h3>Jak projekty są zaprojektowane pod AI</h3>
+<p>Współpraca z AI jest tym sprawniejsza im lepsza struktura projektu. Stąd świadome decyzje w kodzie:</p>
+
+<ul>
+  <li><strong>Separacja modułów z wyraźnymi granicami</strong> - AI może pracować nad jednym pakietem bez kontekstu pozostałych, bo interfejsy są jawne</li>
+  <li><strong>Kontrakt typów między modułami</strong> - cross-module dependencies przez Float/Double, nie przez referencje do obiektów. AI nie musi "domyślać się" jak moduły do siebie pasują</li>
+  <li><strong>Konsekwentne nazewnictwo</strong> - <code>bassStrobeThreshold</code>, <code>accentDecay</code>, <code>sunbeamFlashDuration</code> - nazwy które mówią co to jest, bez komentarzy</li>
+  <li><strong>CLAUDE.md w każdym repozytorium</strong> - plik zawierający kontekst architektoniczny, stack, kluczowe zasady i link do tej dokumentacji. Nowa sesja AI zaczyna od przeczytania tego pliku</li>
+</ul>
+
+<h3>Dokumentacja jako żywy system</h3>
+<p>Ta strona jest głównym odbiorcą i redaktorem AI - zaprojektowana tak, żeby było ją łatwo czytać i aktualizować maszynowo. Nie zastępuje kodu, ale daje kontekst który w kodzie nie ma miejsca: decyzje, motywacje, powiązania między projektami.</p>
+
+<p>Każde repozytorium ma zainstalowany <strong>post-commit hook</strong>, który po każdym commicie automatycznie aktualizuje sekcję "Ostatnie zmiany" i mini-historię commitów przy każdym projekcie:</p>
+
+<div class="hook-flow">
+  <div class="hstep"><code>git commit</code><small>w LightSim / bass_panel / midi-ledfx</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep"><code>.git/hooks/post-commit</code><small>uruchamia update-docs.sh</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep">aktualizuje<small>HTML w audio-lighting-docs</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep"><code>git push</code><small>do GitHub Pages</small></div>
+  <span class="harrow">→</span>
+  <div class="hstep" style="color:var(--green)">ta strona<small>jest aktualna</small></div>
+</div>
+
+<div class="box tip">
+  <i>📌</i>
+  <div>Dokumentacja jest generowana przy pomocy AI i aktualizowana automatycznie - ale decyzje architektoniczne, kontekst artystyczny i "dlaczego" w tej dokumentacji pochodzą ode mnie. AI jest od "jak", nie od "po co".</div>
+</div>
+
+</section>
 
 <!-- HERO -->
 <div class="hero">
@@ -285,24 +359,6 @@
 
 <p>Oświetlenie sceniczne to medium artystyczne - tak samo jak dźwięk, obraz czy ruch. Reagowanie światłem na muzykę w czasie rzeczywistym nie jest kwestią automatyzacji, lecz <strong>dialogu między sygnałem a przestrzenią</strong>: to samo nagranie brzmi zupełnie inaczej gdy towarzyszy mu puls białego stroboskopu niż gdy przestrzeń kościoła rozświetlają powolne, kolorowe smugi.</p>
 
-<div class="grid2" style="margin-top:16px">
-  <div class="card">
-    <h4>Przestrzeń jako instrument</h4>
-    <p>LightSim symuluje kościół - architekturę o silnym ładunku sakralnym. Sunbeamy naśladują naturalne światło przez witraże. Reaktywność sprawia że przestrzeń "oddycha" razem z muzyką.</p>
-  </div>
-  <div class="card">
-    <h4>Precyzja jako artyzm</h4>
-    <p>Bass Strobe Panel istnieje dlatego że różnica między progiem 0.35 a 0.45 decyduje czy stroboskop wpada w rytm czy tylko w hałas. Panel daje artyście kontrolę na poziomie, którego nie da żaden suwak ogólnego przeznaczenia.</p>
-  </div>
-  <div class="card">
-    <h4>Haptic feedback</h4>
-    <p>Fizyczny MIDI kontroler wprowadza wymiar cielesny - obrót potencjometru różni się od klikania suwakiem. Gest artysty staje się gestem oświetlenia.</p>
-  </div>
-  <div class="card">
-    <h4>Narzędzie zamiast skryptu</h4>
-    <p>Żaden projekt nie jest gotowym "efektem wizualnym". Każdy wymaga świadomego użycia - znajomości muzyki, przestrzeni i technologii jednocześnie.</p>
-  </div>
-</div>
 </section>
 
 <!-- ══════════════════════ KONTEKST ══════════════════════ -->
@@ -392,6 +448,24 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 
 <section id="ls-about">
 <h2>LightSim - symulator oświetlenia 3D</h2>
+
+<div class="proj-meta">
+  <a href="https://github.com/janzablocki/lightsim" target="_blank" class="repo-link">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    janzablocki/lightsim
+  </a>
+  <span class="repo-tag private">private</span>
+  <span class="repo-tag">Swift 5.9+</span>
+  <span class="repo-tag">macOS 14+</span>
+  <span class="repo-tag">SwiftPM</span>
+</div>
+
+<div class="commit-log">
+  <div class="commit-log-header">Ostatnie commity</div>
+<!-- LS_COMMITS_START -->
+<div class="commit-row"><span class="c-hash">ab5a4c5</span><span class="c-msg">docs: add CLAUDE.md with architecture context and docs URL</span><span class="c-date">2026-05-21 02:30</span></div>
+<!-- LS_COMMITS_END -->
+</div>
 
 <p>Aplikacja macOS renderująca model kościoła w RealityKit, sterująca wirtualnymi lampami scenicznymi zsynchronizowanymi z analizowanym audio. Może jednocześnie wysyłać sygnały DMX przez Art-Net do prawdziwego sprzętu.</p>
 
@@ -552,6 +626,24 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <section id="bp-about">
 <h2>Bass Strobe Panel - panel strojenia detekcji basu</h2>
 
+<div class="proj-meta">
+  <a href="https://github.com/janzablocki/bass-panel" target="_blank" class="repo-link">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    janzablocki/bass-panel
+  </a>
+  <span class="repo-tag private">private</span>
+  <span class="repo-tag">Python</span>
+  <span class="repo-tag">HTML/JS</span>
+  <span class="repo-tag">port 8889</span>
+</div>
+
+<div class="commit-log">
+  <div class="commit-log-header">Ostatnie commity</div>
+<!-- BP_COMMITS_START -->
+<div class="commit-row"><span class="c-hash">329ac31</span><span class="c-msg">docs: add CLAUDE.md, changelog section, post-commit hook for auto-docs</span><span class="c-date">2026-05-21 02:30</span></div>
+<!-- BP_COMMITS_END -->
+</div>
+
 <p>Webowy panel uruchamiany lokalnie (Python HTTP server na porcie 8889), umożliwiający precyzyjne strojenie parametrów efektu <code>real_strobe</code> w LedFX. Wizualizuje spektrum mel-bank w czasie rzeczywistym, pokazuje historię band power i umożliwia drag-and-drop ustawianie thresholdów.</p>
 
 <div class="box tip">
@@ -693,6 +785,24 @@ accentCurrentIntensity = target > accentCurrentIntensity
 
 <section id="midi-about">
 <h2>MIDI Kontroler - midi_ledfx.py</h2>
+
+<div class="proj-meta">
+  <a href="https://github.com/janzablocki/midi-ledfx" target="_blank" class="repo-link">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    janzablocki/midi-ledfx
+  </a>
+  <span class="repo-tag private">private</span>
+  <span class="repo-tag">Python</span>
+  <span class="repo-tag">Acer / Linux Debian</span>
+  <span class="repo-tag">Akai MPK Mini</span>
+</div>
+
+<div class="commit-log">
+  <div class="commit-log-header">Ostatnie commity</div>
+<!-- MIDI_COMMITS_START -->
+<div class="commit-row"><span class="c-hash">?</span><span class="c-msg">Brak danych - hook nie skonfigurowany na Acerze</span><span class="c-date"></span></div>
+<!-- MIDI_COMMITS_END -->
+</div>
 
 <p>Skrypt Python uruchamiany na laptopie Acer (Linux Debian), mapujący fizyczny kontroler <strong>Akai MPK Mini</strong> na wielourządzeniowy system oświetlenia LED. Jeden skrypt koordynuje: efekty LedFX na taśmach LED, natywne efekty WLED, parametry bass strobe panelu - wszystko w czasie rzeczywistym, z pełnym TUI dashboard w terminalu.</p>
 
@@ -1051,8 +1161,7 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
     </thead>
     <tbody id="changelog-body">
 <!-- CHANGES_START -->
-<tr><td>2026-05-21 02:30</td><td>Bass Strobe Panel</td><td><code>329ac31</code></td><td>docs: add CLAUDE.md, changelog section, post-commit hook for auto-docs</td></tr>
-<tr><td>2026-05-21 02:30</td><td>LightSim</td><td><code>ab5a4c5</code></td><td>docs: add CLAUDE.md with architecture context and docs URL</td></tr>
+<tr><td colspan="4" style="color:var(--muted);text-align:center">Brak wpisów - hook nie uruchomił się jeszcze po konfiguracji.</td></tr>
 <!-- CHANGES_END -->
     </tbody>
   </table>
