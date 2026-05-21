@@ -616,6 +616,18 @@ accentCurrentIntensity = target > accentCurrentIntensity
   <i>⚠️</i>
   <div>USDZ z <code>metersPerUnit = 0.01</code> tworzy wewnętrzny transform <code>×100</code> w RealityKit. Ręczne skalowanie przez <code>entity.scale</code> mnoży ten transform - <code>visualBounds</code> zwraca wartości ×500 zamiast oczekiwanych. Rozwiązanie: nie skalować modelu, tylko wyśrodkować i skalować pozycje fixture'ów przez <code>fixtureScale = rawHeight / 15.0</code>.</div>
 </div>
+
+<h3>Podgląd</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+  <div style="border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+    <img src="lightsim-screenshot.png" alt="LightSim - scena 3D" style="width:100%;display:block">
+    <div style="padding:8px 12px;font-size:11px;color:var(--muted);background:var(--surface)">Scena 3D z modelem świątyni i efektami świetlnymi</div>
+  </div>
+  <div style="border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+    <img src="lightsim-settings.png" alt="LightSim - panel ustawień" style="width:100%;display:block">
+    <div style="padding:8px 12px;font-size:11px;color:var(--muted);background:var(--surface)">Panel ustawień: Bass strobe, Accent lights, Sunbeam flash</div>
+  </div>
+</div>
 </section>
 
 <hr>
@@ -640,11 +652,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <div class="commit-log">
   <div class="commit-log-header">Ostatnie commity</div>
 <!-- BP_COMMITS_START -->
-<div class="commit-row"><span class="c-hash">70f236f</span><span class="c-msg">docs: remove cringe tagline</span><span class="c-date">2026-05-21 02:42</span></div>
-<div class="commit-row"><span class="c-hash">376c6f4</span><span class="c-msg">docs: hide commit logs for now</span><span class="c-date">2026-05-21 02:40</span></div>
-<div class="commit-row"><span class="c-hash">290eaf0</span><span class="c-msg">docs: move AI workflow section below hero</span><span class="c-date">2026-05-21 02:39</span></div>
-<div class="commit-row"><span class="c-hash">6382946</span><span class="c-msg">docs: fix awkward sentence in AI workflow section</span><span class="c-date">2026-05-21 02:37</span></div>
-<div class="commit-row"><span class="c-hash">d4c0413</span><span class="c-msg">docs: AI workflow section, repo links, commit logs, remove verbose cards</span><span class="c-date">2026-05-21 02:36</span></div>
+<div class="commit-row"><span class="c-hash">329ac31</span><span class="c-msg">docs: add CLAUDE.md, changelog section, post-commit hook for auto-docs</span><span class="c-date">2026-05-21 02:30</span></div>
 <!-- BP_COMMITS_END -->
 </div>
 
@@ -1165,8 +1173,7 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
     </thead>
     <tbody id="changelog-body">
 <!-- CHANGES_START -->
-<tr><td>2026-05-21 02:42</td><td>Bass Strobe Panel</td><td><code>70f236f</code></td><td>docs: remove cringe tagline</td></tr>
-
+<tr><td colspan="4" style="color:var(--muted);text-align:center">Brak wpisów - hook nie uruchomił się jeszcze po konfiguracji.</td></tr>
 <!-- CHANGES_END -->
     </tbody>
   </table>
