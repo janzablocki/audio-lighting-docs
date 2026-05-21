@@ -207,6 +207,9 @@
 
   <div class="nav-cat">Podsumowanie</div>
   <a href="#summary">Zestawienie</a>
+
+  <div class="nav-cat">Changelog</div>
+  <a href="#changelog">Ostatnie zmiany</a>
 </aside>
 
 <!-- ════ MAIN ════ -->
@@ -217,6 +220,7 @@
   <p style="margin:0 0 8px"><strong style="color:var(--accent)">O tej dokumentacji i sposobie pracy</strong></p>
   <p style="margin:0;color:var(--muted)">Dokumentacja pisana częściowo przeze mnie, częściowo przy użyciu AI. To nie jest skrót ani zastępstwo - to świadomy workflow. Projekty są celowo zoptymalizowane pod współpracę z AI: decyzje architektoniczne podejmowane z wyprzedzeniem, kontrakt typów między modułami, konsekwentne nazewnictwo, dokumentacja jako źródło prawdy między sesjami. Im lepiej zaprojektowana struktura, tym sprawniej AI porusza się po kodzie i tym mniej czasu tracę na wyjaśnianie kontekstu od nowa.</p>
   <p style="margin:8px 0 0;color:var(--muted)">Efekt: mogę skupić się na decyzjach twórczych i architektonicznych - co zbudować, dlaczego, jakie mapowanie między dźwiękiem a światłem ma sens artystycznie - a nie na mechanicznym pisaniu boilerplate'u czy dokumentacji rzeczy oczywistych z kodu. AI jest narzędziem w tym samym sensie co kompilator albo edytor - używam go bo przyspiesza pracę, nie dlatego że nie umiem bez niego.</p>
+  <p style="margin:8px 0 0;color:var(--muted)"><strong style="color:var(--text)">Dokumentacja jest dynamiczna.</strong> Jej głównym odbiorcą i redaktorem jest AI - jest zaprojektowana tak, żeby było ją łatwo czytać i aktualizować maszynowo. Każdy commit do repozytoriów projektów triggeruje hook, który aktualizuje tę stronę. Sekcja "Ostatnie zmiany" poniżej jest generowana automatycznie.</p>
 </div>
 
 <!-- HERO -->
@@ -1035,6 +1039,22 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
   <i>🎯</i>
   <div>Wspólny mianownik wszystkich trzech projektów: <strong>sygnał audio w czasie rzeczywistym → parametry oświetlenia</strong>. Każdy projekt rozwiązuje ten problem na innym poziomie abstrakcji i z innym stosem technologicznym - od niskopoziomowego DSP w C (przez Swift Accelerate) przez REST API po fizyczny hardware MIDI.</div>
 </div>
+</section>
+
+<!-- CHANGELOG -->
+<section id="changelog">
+  <h2>Ostatnie zmiany</h2>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:16px">Sekcja generowana automatycznie przez commit hook. Każdy push do repozytoriów LightSim, Bass Strobe Panel lub MIDI Controller aktualizuje ten wpis.</p>
+  <table>
+    <thead>
+      <tr><th>Data</th><th>Repozytorium</th><th>Commit</th><th>Opis</th></tr>
+    </thead>
+    <tbody id="changelog-body">
+<!-- CHANGES_START -->
+<tr><td colspan="4" style="color:var(--muted);text-align:center">Brak wpisów - hook nie uruchomił się jeszcze po konfiguracji.</td></tr>
+<!-- CHANGES_END -->
+    </tbody>
+  </table>
 </section>
 
 <footer>
