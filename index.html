@@ -298,46 +298,55 @@
 <section id="overview">
 <h2>Przegląd systemu</h2>
 
-<p>Każdy z trzech projektów rozwiązuje inny aspekt sterowania oświetleniem reaktywnym — razem tworzą kompletny ekosystem od symulacji przez detekcję basu po fizyczne LED na żywo.</p>
+<p>Trzy projekty tworzą jeden ekosystem — są ze sobą połączone i działają razem podczas live setu. MIDI kontroler steruje zarówno efektami LedFX jak i parametrami Bass Strobe Panelu w czasie rzeczywistym. LightSim działa równolegle jako symulator i może wysyłać DMX do tego samego sprzętu.</p>
 
 <div class="arch">
   <div class="arch-row">
-    <div class="abox purple">LightSim<small>macOS / Swift</small></div>
+    <div class="abox orange" style="min-width:130px">MIDI Kontroler<small>Akai MPK Mini</small></div>
     <span class="aarrow">→</span>
-    <span class="alabel">RealityKit 3D + Art-Net UDP</span>
+    <span class="alabel" style="white-space:nowrap">k1/k2: bass threshold,<br>max Hz (POST /param)</span>
     <span class="aarrow">→</span>
-    <div class="abox gray">DMX kontroler<small>fizyczny sprzęt</small></div>
+    <div class="abox green" style="min-width:130px">Bass Strobe Panel<small>detekcja basu</small></div>
+    <span class="aarrow">→</span>
+    <div class="abox blue" style="min-width:100px">LedFX<small>real_strobe</small></div>
+    <span class="aarrow">→</span>
+    <div class="abox gray">fizyczne LED</div>
   </div>
   <div class="arch-row" style="margin-top:10px">
-    <div class="abox green">Bass Strobe Panel<small>Python + HTML</small></div>
+    <div class="abox orange" style="min-width:130px">MIDI Kontroler<small>Bank R/G + k3–k8</small></div>
     <span class="aarrow">→</span>
-    <span class="alabel">HTTP REST API</span>
+    <span class="alabel">efekty, presety,<br>profile kolorów</span>
     <span class="aarrow">→</span>
-    <div class="abox blue">LedFX<small>real_strobe effect</small></div>
+    <div class="abox blue" style="min-width:130px">LedFX<small>virtuals</small></div>
     <span class="aarrow">→</span>
-    <div class="abox gray">LED pasy / fixturay<small>fizyczne LED</small></div>
+    <div class="abox gray" style="min-width:100px">LED pasy<small>+ COB</small></div>
   </div>
   <div class="arch-row" style="margin-top:10px">
-    <div class="abox orange">MIDI Kontroler<small>Acer + Python</small></div>
+    <div class="abox purple" style="min-width:130px">LightSim<small>macOS / Swift</small></div>
     <span class="aarrow">→</span>
-    <span class="alabel">MIDI CC messages</span>
+    <span class="alabel">RealityKit 3D<br>+ Art-Net UDP</span>
     <span class="aarrow">→</span>
-    <div class="abox blue">LedFX<small>lub inne docelowe</small></div>
+    <div class="abox gray" style="min-width:130px">symulator / DMX<small>ten sam sprzęt</small></div>
   </div>
 </div>
 
-<div class="grid3">
+<div class="box key" style="margin-top:16px">
+  <i>🔗</i>
+  <div><strong>Kluczowe połączenie:</strong> pokrętła k1 i k2 na MIDI kontrolerze sterują bezpośrednio Bass Strobe Panelem — czułością detekcji basu i górną granicą pasma. To samo co klikanie suwaków w przeglądarce, ale przez fizyczny gest podczas live setu, bez patrzenia w ekran. Trzy projekty, jeden performer.</div>
+</div>
+
+<div class="grid3" style="margin-top:16px">
   <div class="card">
     <h4>LightSim</h4>
     <p>Symulator 3D kościoła. Mikrofon lub plik audio → RealityKit → wirtualne efekty + opcjonalnie Art-Net do prawdziwego sprzętu.</p>
   </div>
   <div class="card">
     <h4>Bass Strobe Panel</h4>
-    <p>Panel webowy do precyzyjnego strojenia detekcji basu w LedFX. Wizualizacja spektrum w czasie rzeczywistym, drag-and-drop thresholdów.</p>
+    <p>Wizualne strojenie detekcji basu w LedFX — obsługiwany przez przeglądarkę <em>lub</em> bezpośrednio z klawiatury MIDI (k1/k2).</p>
   </div>
   <div class="card">
     <h4>MIDI Kontroler</h4>
-    <p>Skrypt na laptopie Acer mapujący potencjometry/pady MIDI kontrolera na parametry LedFX lub inne systemy oświetlenia.</p>
+    <p>Centrum dowodzenia live setu — steruje jednocześnie efektami LedFX, profilami kolorów i parametrami Bass Strobe Panelu.</p>
   </div>
 </div>
 </section>
