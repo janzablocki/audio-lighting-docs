@@ -174,7 +174,9 @@
   </div>
 
   <div class="nav-cat">Kontekst</div>
-  <a href="#art-context">Kontekst artystyczny</a>
+  <a href="#art-context">Inspiracja i geneza</a>
+  <a href="#art-context">↳ Church of Sound</a>
+  <a href="#art-context">↳ Demucs — co dalej</a>
   <a href="#overview">Przegląd systemu</a>
   <a href="#concepts">Koncepcje techniczne</a>
 
@@ -231,26 +233,63 @@
 <section id="art-context">
 <h2>Kontekst artystyczny</h2>
 
+<h3>Inspiracja: Church of Sound @ Borderland</h3>
+<p>Punktem wyjścia dla LightSim była instalacja <strong>Church of Sound</strong> — projekt artystyczny prezentowany na festiwalu <a href="https://www.theborderland.se" target="_blank">Borderland</a> w Szwecji. Borderland to festiwal eksperymentalnej sztuki i społeczności, gdzie uczestniczy tworzą tymczasowe instalacje, performance i przestrzenie wspólnego doświadczenia. Church of Sound to jedna z takich przestrzeni — kościół z wyjątkowo przemyślanym, immersyjnym oświetleniem, gdzie architektura sakralna i dźwięk tworzą jedno środowisko sensoryczne.</p>
+
+<p>Ten koncept — kościół jako przestrzeń audio-wizualnego doświadczenia — stał się bezpośrednią inspiracją do zbudowania symulatora: playgroundu do eksperymentowania z oświetleniem kościelnej architektury zanim cokolwiek trafi na fizyczny sprzęt.</p>
+
+<h3>Diagnoza z przeglądów: granice analizy spektrum</h3>
+<p>Podczas przeglądów na uczelni pojawiła się kluczowa obserwacja: <strong>analiza spektrum FFT to niewystarczające narzędzie do kontroli oświetlenia artystycznego</strong>. Spektrum mówi jak głośne są poszczególne częstotliwości — ale nie mówi <em>co</em> gra. Kick drum na 80 Hz i bas gitarowy na 80 Hz mają identyczny wpływ na pasmo, choć artystycznie są zupełnie różnymi zdarzeniami muzycznymi. Światło reaguje na energię, nie na muzykę.</p>
+
+<div class="box key">
+  <i>🔍</i>
+  <div>Konkretny problem: przy miksie gdzie bas gitarowy gra ciągłą linię, stroboskop zaprojektowany pod kick drum odpala niemal bez przerwy — bo widzi energię w paśmie, nie instrument. Słuchacz czuje rozjazd między tym co słyszy a tym co widzi, nawet jeśli nie umie go nazwać.</div>
+</div>
+
+<h3>Następny krok: separacja stemów przez Demucs</h3>
+<p><strong>Demucs</strong> (Meta AI Research) to model głębokiego uczenia do source separation — rozłożenia miksu na osobne stemy: perkusja, bas, wokal, reszta. Zamiast reagować na spektrum całego miksu, każde źródło dźwięku może sterować innym elementem oświetlenia niezależnie.</p>
+
+<div class="arch" style="margin-top:16px">
+  <div class="arch-row">
+    <div class="abox blue">Miks audio<small>stereo/mono</small></div>
+    <span class="aarrow">→</span>
+    <div class="abox purple">Demucs<small>stem separation</small></div>
+    <span class="aarrow">→</span>
+    <div class="abox green">drums stem<small>→ strobes</small></div>
+  </div>
+  <div class="arch-row" style="margin-top:6px;padding-left:168px">
+    <div class="abox blue">bass stem<small>→ sunbeams</small></div>
+    <span class="aarrow" style="opacity:0">→</span>
+    <div class="abox orange">vocals stem<small>→ accent lights</small></div>
+    <span class="aarrow" style="opacity:0">→</span>
+    <div class="abox gray">other stem<small>→ ambient</small></div>
+  </div>
+</div>
+
+<p style="margin-top:12px">Kick drum staje się jedynym źródłem triggerów dla stroboskopu. Linia basu steruje sunbeamami niezależnie od tego czy w miksie jest też kick. Wokal może modulować kolor ambient lights. Każdy element przestrzeni reaguje na jeden, konkretny instrument — a nie na sumę wszystkiego.</p>
+
+<p>LightSim jako symulator 3D jest właściwym playgroundem do testowania tych mapowań <em>przed</em> implementacją na fizycznym sprzęcie — iteracja kosztuje sekundy, nie godziny montażu.</p>
+
+<hr style="margin:28px 0">
+
 <p>Oświetlenie sceniczne to medium artystyczne — tak samo jak dźwięk, obraz czy ruch. Reagowanie światłem na muzykę w czasie rzeczywistym nie jest kwestią automatyzacji, lecz <strong>dialogu między sygnałem a przestrzenią</strong>: to samo nagranie brzmi zupełnie inaczej gdy towarzyszy mu puls białego stroboskopu niż gdy przestrzeń kościoła rozświetlają powolne, kolorowe smugi.</p>
 
-<p>Te projekty eksplorują to, jak algorytm może stać się instrumentem interpretacji muzycznej — gdzie decyzje artystyczne (jakie częstotliwości wyzwalają jaki efekt, jak szybko światło gaśnie po uderzeniu, z jaką szansą zapalają się oba sunbeamy jednocześnie) są parametrami strojenia, nie kodowania.</p>
-
-<div class="grid2" style="margin-top:20px">
+<div class="grid2" style="margin-top:16px">
   <div class="card">
     <h4>Przestrzeń jako instrument</h4>
-    <p>LightSim symuluje kościół — architekturę o silnym ładunku sakralnym i specyficznej akustyce. Sunbeamy naśladują naturalne światło przechodzące przez witraże. Reaktywność sprawia że przestrzeń "oddycha" razem z muzyką.</p>
+    <p>LightSim symuluje kościół — architekturę o silnym ładunku sakralnym. Sunbeamy naśladują naturalne światło przez witraże. Reaktywność sprawia że przestrzeń "oddycha" razem z muzyką.</p>
   </div>
   <div class="card">
     <h4>Precyzja jako artyzm</h4>
-    <p>Bass Strobe Panel istnieje dlatego że "wystarczająco dobra" detekcja basu to za mało — różnica między progiem 0.35 a 0.45 decyduje czy stroboskop wpada w rytm czy tylko w hałas. Panel daje artystę kontrolę na poziomie, którego nie da żaden suwak ogólnego przeznaczenia.</p>
+    <p>Bass Strobe Panel istnieje dlatego że różnica między progiem 0.35 a 0.45 decyduje czy stroboskop wpada w rytm czy tylko w hałas. Panel daje artyście kontrolę na poziomie, którego nie da żaden suwak ogólnego przeznaczenia.</p>
   </div>
   <div class="card">
     <h4>Haptic feedback</h4>
-    <p>Fizyczny MIDI kontroler wprowadza wymiar cielesny — zmiana parametrów przez obrót potencjometru różni się od klikania suwakiem. Gest artysty staje się gestem oświetlenia.</p>
+    <p>Fizyczny MIDI kontroler wprowadza wymiar cielesny — obrót potencjometru różni się od klikania suwakiem. Gest artysty staje się gestem oświetlenia.</p>
   </div>
   <div class="card">
     <h4>Narzędzie zamiast skryptu</h4>
-    <p>Żaden projekt nie jest gotowym "efektem wizualnym". Każdy jest narzędziem wymagającym świadomego użycia — znajomości muzyki, przestrzeni i technologii jednocześnie.</p>
+    <p>Żaden projekt nie jest gotowym "efektem wizualnym". Każdy wymaga świadomego użycia — znajomości muzyki, przestrzeni i technologii jednocześnie.</p>
   </div>
 </div>
 </section>
