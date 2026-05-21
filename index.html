@@ -170,7 +170,7 @@
   .repo-tag { font-size: 10px; padding: 3px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: var(--surface2); }
   .repo-tag.private { color: var(--orange); border-color: rgba(245,166,35,.25); background: rgba(245,166,35,.06); }
 
-  .commit-log { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 28px; }
+  .commit-log { display: none; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 28px; }
   .commit-log-header { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); padding: 8px 14px; background: var(--surface); border-bottom: 1px solid var(--border); }
   .commit-row { display: grid; grid-template-columns: 70px 1fr 130px; align-items: center; gap: 12px; padding: 8px 14px; border-bottom: 1px solid var(--border); font-size: 12.5px; }
   .commit-row:last-child { border-bottom: none; }
@@ -640,11 +640,7 @@ accentCurrentIntensity = target > accentCurrentIntensity
 <div class="commit-log">
   <div class="commit-log-header">Ostatnie commity</div>
 <!-- BP_COMMITS_START -->
-<div class="commit-row"><span class="c-hash">290eaf0</span><span class="c-msg">docs: move AI workflow section below hero</span><span class="c-date">2026-05-21 02:39</span></div>
-<div class="commit-row"><span class="c-hash">6382946</span><span class="c-msg">docs: fix awkward sentence in AI workflow section</span><span class="c-date">2026-05-21 02:37</span></div>
-<div class="commit-row"><span class="c-hash">d4c0413</span><span class="c-msg">docs: AI workflow section, repo links, commit logs, remove verbose cards</span><span class="c-date">2026-05-21 02:36</span></div>
-<div class="commit-row"><span class="c-hash">329ac31</span><span class="c-msg">docs: add CLAUDE.md, changelog section, post-commit hook for auto-docs</span><span class="c-date">2026-05-21 02:29</span></div>
-<div class="commit-row"><span class="c-hash">f48e88c</span><span class="c-msg">[bass-panel] Bass strobe panel — Python server + LedFX UI + docs</span><span class="c-date">2026-05-21 01:59</span></div>
+<div class="commit-row"><span class="c-hash">329ac31</span><span class="c-msg">docs: add CLAUDE.md, changelog section, post-commit hook for auto-docs</span><span class="c-date">2026-05-21 02:30</span></div>
 <!-- BP_COMMITS_END -->
 </div>
 
@@ -1165,8 +1161,7 @@ LAT [████░░] 45ms   avg 32   max 120   ▇▆▅▆▇▆▅▄
     </thead>
     <tbody id="changelog-body">
 <!-- CHANGES_START -->
-<tr><td>2026-05-21 02:39</td><td>Bass Strobe Panel</td><td><code>290eaf0</code></td><td>docs: move AI workflow section below hero</td></tr>
-
+<tr><td colspan="4" style="color:var(--muted);text-align:center">Brak wpisów - hook nie uruchomił się jeszcze po konfiguracji.</td></tr>
 <!-- CHANGES_END -->
     </tbody>
   </table>
