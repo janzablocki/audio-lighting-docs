@@ -435,6 +435,11 @@ vDSP_fft_zrip(fftSetup, &splitComplex, <span class="nm">1</span>, vDSP_Length(lo
 <section id="ls-audio">
 <h2>LightSim — analiza audio</h2>
 
+<div class="box warn">
+  <i>⚙️</i>
+  <div><strong>Moduł tymczasowy.</strong> Obecna implementacja FFT jest placeholderem — zostanie zastąpiona modelem opartym na Demucs, który rozłoży audio na stemy przed analizą. Każdy instrument będzie sterował innym elementem oświetlenia niezależnie, zamiast reagowania na surowe spektrum całego miksu.</div>
+</div>
+
 <h3>8 pasm mel-filtrów</h3>
 <table>
   <tr><th>Pasmo</th><th>Zakres</th><th>Zawartość muzyczna</th><th>Mapowanie w CueEngine</th></tr>
